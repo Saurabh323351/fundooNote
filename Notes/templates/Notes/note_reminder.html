@@ -1,0 +1,7 @@
+{% block content %}
+    <h1>Reminder Note</h1>
+    <form action="{% url 'note_reminder' note.id %}" method="post" >{% csrf_token %}
+        Date:<input type="date" name="date"/>
+    <input type="submit" value="Create" />
+</form>
+{% endblock %}

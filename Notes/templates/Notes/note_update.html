@@ -1,0 +1,51 @@
+<html>
+<body>
+    <h1>Update Note</h1>
+    <form action="{% url 'note_update' note.id %}" method="post" name="ajax_update">{% csrf_token %}
+        Title<input name="title" type="text" value="{{note.title}}" ><br>
+        Description<input name="description" type="text" value="{{note.description}}" ><br>
+        Is Pinned <br>
+        Yes <input name="is_pinned" type="radio" value="{{note.is_pinned}}" >
+        No <input name="is_pinned" type="radio" value="{{note.is_pinned}}" ><br>
+        Select Color: <Br>
+            <select name="color">
+                <option value="white">white</option>
+                            <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
+                            <option value="#FFD">Light Yellow</option>
+                            <option value="lightsalmon">lightsalmon</option>
+                            <option value="salmon">salmon</option>
+                            <option value="darksalmon">darksalmon</option>
+                            <option value="lawngreen">lawngreen</option>
+                            <option value="lightgreen">lightgreen</option>
+                            <option value="lightcyan">lightcyan	</option>
+                            <option value="lightskyblue	">lightskyblue</option>
+                            <option value="rgb(215, 174, 251)">Google color1</option>
+                            <option value="rgb(174, 203, 250)">Google color2</option>
+                            <option value="rgb(253, 207, 232)">Google color3</option>
+                            <option value="rgb(230, 201, 168)">Google color4</option>
+                            <option value="rgb(230, 201, 168)">Google color5</option>
+                            <option value="rgb(230, 201, 168)">Google color6</option>
+            </select><br>
+    <input type="button" value="submit" id ="submit_id" onclick="submitForm()" />
+
+<script>
+            function submitForm(){
+
+
+// Get the first form with the name
+   // Usually the form name is not repeated
+   // but duplicate names are possible in HTML
+   // Therefore to work around the issue, enforce the correct index
+   var frm = document.getElementsByName('ajax_update')[0];
+   frm.submit(); // Submit the form
+   frm.reset();  // Reset all form data
+   return false; // Prevent page refresh
+}
+
+</script>
+    </form>
+
+
+
+</body>
+</html>

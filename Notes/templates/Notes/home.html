@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>creating note</title>
+
+
+    <!--<meta charset="utf-8">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--<title>fundooNotes App</title>-->
+    <!-- Core CSS - Include with every page -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+	<style>
+	nav.navbar {
+		border-radius: 0px !important;
+
+	}
+
+
+	</style>
+
+</head>
+<body>
+
+<!--
+<form method="post" action="{% url 'create_note' %}" id="note">
+    {{form.as_p}}
+    <input type="submit" value="submit" id="create_note">
+</form>
+-->
+
+<div class="container">
+<div class="row grid">
+
+        <div class="panel-footer">
+          <div class="input-group">
+            <a href="{% url 'create_note' %}" ><div id="id_textnote" class="form-control" placeholder="Take a Note.." click="myFunction">Take a note..</div></a>
+            <div id="mydiv"  class="toshow">
+                <h1>Create Note</h1>
+                <form action="" method="post" id="ajax_create">
+                   {% csrf_token %}
+                   Title   :<input name="title" type="text" value="{{note.title}}" ><br>
+                    Description :<input name="description" type="text" value="{{note.description}}" ><br>
+                    Is Pinned <br>
+                    Yes <input name="is_pinned" type="radio" value="{{note.is_pinned}}" >
+                    No <input name="is_pinned" type="radio" value="{{note.is_pinned}}" >
+                    Select Color: <Br>
+                        <select name="color">
+                            <option value="white">white</option>
+                            <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
+                            <option value="#FFD">Light Yellow</option>
+                            <option value="lightsalmon">lightsalmon</option>
+                            <option value="salmon">salmon</option>
+                            <option value="darksalmon">darksalmon</option>
+                            <option value="lawngreen">lawngreen</option>
+                            <option value="lightgreen">lightgreen</option>
+                            <option value="lightcyan">lightcyan	</option>
+                            <option value="lightskyblue	">lightskyblue</option>
+                            <option value="rgb(215, 174, 251)">Google color1</option>
+                            <option value="rgb(174, 203, 250)">Google color2</option>
+                            <option value="rgb(253, 207, 232)">Google color3</option>
+                            <option value="rgb(230, 201, 168)">Google color4</option>
+                            <option value="rgb(230, 201, 168)">Google color5</option>
+                            <option value="rgb(230, 201, 168)">Google color6</option>
+
+                        </select>
+                    <input type="submit" value="submit" onclick="myFunction" id="create_note"/>
+                </form>
+            </div>
+          </div>
+        </div>
+
+
+{% for post in notes_obj %}
+
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 card grid-item" >
+  <div class="thumbnail" id="color" style="background-color:{{post.color}};">
+    <div class="caption">
+        <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
+        {{ post.title }}</a></h2>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+      </div>
+    <p>{{ post.description }}</p>
+
+    <div class="lable_div" id="ldiv_id">{{post.label}}</div>
+
+    <div class="caption card-footer">
+      <ul class="list-inline">
+          <medium><a href="{% url 'note_delete' post.pk %}" data-toggle="modal" data-target="#deleteModal">Delete</a></medium>
+              <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium><a href="#">Pin</a></medium>
+          <medium><a href="#" >Archive</a></medium>
+          <medium><a href="#" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+              <div id="lableModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium><a href="{% url 'note_reminder' post.pk %}">Reminder</a> </medium>
+
+          <medium><a href="#" >colaborate</a></medium>
+        {# <li><i class="fa fa-user"></i></li> #}
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+{% endfor %}
+<!-- Modal -->
+
+</div><!-- row -->
+</div>
+</body>
+</html>
