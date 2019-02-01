@@ -999,3 +999,60 @@ float: left; width: 20%;
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: white;}
+
+
+#note_panel{
+    width: 555px;
+    margin-left: 137px;
+    height: 134px;
+
+}
+
+#frmTitle{
+
+border-color: transparent;
+text-shadow: none;
+border-width:0px;
+box-shadow:none;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 6px;
+height: 27px;
+width: 308px;
+}
+
+#frmDescription{
+
+border-width: 0px;
+height: 39px;
+width: 302px;
+padding-left: 6px;
+margin-top: 8px;
+}
+
+#card_id{
+
+   width: 283px;
+    height: 163px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.btnClose{
+
+
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    height: 24px;
+    width: 66px;
+    padding-left: 6px;
+    margin-left: 507px;
+
+}

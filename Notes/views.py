@@ -69,7 +69,7 @@ def show_notes(request):
 
     notes_obj = Notes.objects.all().order_by('-created_time')
 
-    return render(request, 'Notes/home.html', {'notes_obj': notes_obj})
+    return render(request, 'users/base.html', {'notes_obj': notes_obj})
 
 
 def note_edit(request, pk):

@@ -1,5 +1,7 @@
+
 <!doctype html>
 {% load static %}
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -7,6 +9,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>fundooNotes</title>
     <!-- Latest compiled and minified CSS -->
+
+
+     <!--home content add kiya yaha se -->
+
+     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+   <!--<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>-->
+   <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>-->
+   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>-->
+
+   <!--yaha tak kiya hu -->
+
+
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,13 +47,24 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="{% static 'blog/main1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main1.js' %}"></script>
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
 </head>
 <body>
 <div id="wrapper">
@@ -54,7 +86,7 @@
                         <i class="fa fa-bars"></i>
                     </a>
                     <a id="fundootitle" href="#">fundooNotes</a>
-                    <button class="gb_Df" aria-label="Search" role="button" id="searchicon">
+                    <button class="gb_Df" aria-label="Search" role="button" id="searchicon" style="margin-top: 11px;">
                           <svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
                               <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                               <path d="M0 0h24v24H0z" fill="none"></path></svg></button>
@@ -80,7 +112,8 @@
 
             </form>
 
-         <div id="navbar" class="collapse navbar-collapse">
+         <div id="navbar" class="collapse navbar-collapse"  style="
+    background-color: white;">
             <ul class="nav navbar-nav">
 
 
@@ -94,11 +127,24 @@
             <ul class="sidebar-nav nav">
 
                 <li>
-                    <a href="#Notes">
-                        <span  class="glyphicon glyphicon-list-alt"></span>
-                        <span class="fa fa-anchor solo"><b>Notes</b></span>
+
+                    <a href="{% url 'show_notes' %}" style="
+    margin-right: 0px;
+    padding-right: 1px;
+    top: 1px;
+    right: 32px;
+">
+                        <span  class="fa fa-home solo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="gb_Uc"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path></svg></span>
+                        <!--<span class="fa fa-anchor solo"><b>Notes</b></span>-->
+                       <span> <b style="margin-left:6px; ">Notes</b></span>
                     </a>
                 </li>
+                <li>
+
+<!--<a href="#Notes"><span class="fa fa-home solo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="gb_Uc"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path></svg><b style="margin-left:6px; ">Notes</b></span></a>-->
+<!--</li>-->
+
+
                 <li>
                     <a href="#Remainders">
                         <span  class="glyphicon glyphicon-bell"></span>
@@ -128,91 +174,94 @@
     </div>
 
 <!--Page content-->
-<div contenteditable="true" aria-multiline="true" role="textbox" aria-label="Note" class="notranslate IZ65Hb-YPqjbf h1U9Be-YPqjbf" tabindex="0"></div>
-<div id="page-content-wrapper">
-<div class="page-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-    <!--<div class="panel panel-danger">-->
-        <!--<div class="panel-heading">-->
-                <!--Panel 1-->
-        <!--</div>-->
+<!--<div aria-label="Note" aria-multiline="true" class="notranslate IZ65Hb-YPqjbf h1U9Be-YPqjbf" contenteditable="true"-->
+     <!--role="textbox" style="-->
+    <!--background-color: white;" tabindex="0"></div>-->
+<!--<div id="page-content-wrapper" style="-->
+    <!--background-color: white;">-->
+<!--<div class="page-content" style="-->
+    <!--background-color: white;">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+    <!--&lt;!&ndash;<div class="panel panel-danger">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                <!--&lt;!&ndash;Panel 1&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-      <div class="bs-example">
-
-
-
-
-          <div class="form-group">
-              <!--<a href="#myModal" input class="form-control input-md"  id="inputmd" type="text"  placeholder="Take a note..." aria-label="Search" data-toggle="modal"></a>-->
-         <div class="container" id="textinput">
+      <!--<div class="bs-example">-->
 
 
 
-      <div id="menu"><input class="form-control input-md"  id="inputmd" type="text"  placeholder="Title" aria-label="Search">
-       <div role="button" class="btn " style="margin: -39px; margin-left: 386px;margin-top: -41px;"><span class="glyphicon glyphicon-ok-circle"></span></div>
-       <div role="button" class="btn " style="margin: -40px; margin-left: 430px; margin-top: -41px;"><span class="glyphicon glyphicon-pencil"></span></div>
-       <div role="button" class="btn " style="margin: -39px; margin-left: 471px; margin-top: -41px;"><span class="glyphicon glyphicon-picture"></span></div>
-          <ul id="abcd">
-              <textarea name="take a note" id="text" placeholder=" take a note.."></textarea></ul>
-                        <div  id="note-button-1">
-                             <div role="button" class="btn" style="margin: 7px; margin-left: -8px">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="remainder">
-                                <path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>
-                                <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>
-                               </svg></div></a>
-                            <ul class="dropdown-menu" id="note-button-1-actions" style="display:none">
-                                   <label>Remainder</label>
-                                  <li><a href="#">Later today</a></li>
-                                  <li><a href="#">Tomorrow</a></li>
-                                  <li><a href="#">Next week</a></li>
-                                  <li><a href="#"><svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">
-                                   <path d="m23.99 4c-11.05 0-19.99 8.95-19.99 20s8.94 20 19.99 20c11.05 0 20.01-8.95 20.01-20s-8.96-20-20.01-20zm0.01 36c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z"/>
-                                   <path d="m0 0h48v48h-48z" fill="none"/>
-                                   <path d="m25 14h-3v12l10.49 6.3 1.51-2.46-9-5.34z"/>
-                                  </svg>
-                                  Select date and time</a></li>
-                              </ul>
-                          </div>
-                <div role="button" class="btn " style="margin: -20px;margin-top: -100px;margin-left: 24px;" aria-label="Collaborator">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator">
-                              <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
-                           </svg></div>
-                <div role="button" class="btn " style="margin: -39px; margin-left: -1px; margin-top: -115px;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                            <path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/>
-                            <circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/>
-                          </svg> </div>
-                <div role="button" class="btn " style="margin: -39px; margin-left: 20px;margin-top: -113px;">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">
-                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
-                         </svg></div>
-                <div role="button" class="btn " style="margin: -39px; margin-left: 21px;margin-top: -115px;">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive">
-                           <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
-                       </svg></div>
-                 <div  id="note-button-6">
-                          <div role="button" class="btn " style="margin: -26px; margin-left: 191px; margin-top: -84px;">
-                              <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18"  height="18" width="25">
-                                      <path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0
-                                             5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>
-                              </svg>
-                          </div>
-                      <ul class="dropdown-menu" id="note-button-6-actions" style="display:none">
-                          <li><a href="#">Change labels</a></li>
-                          <li><a href="#">Add drawing</a></li>
-                          <li><a href="#">Show tick boxes</a></li>
-                      </ul>
-                  </div>
-                <div role="button" class="btn " style="margin: -26px; margin-left: 244px; margin-top: -144px;">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M14.1 8H7.83l2.59-2.59L9 4 4 9l5 5 1.41-1.41L7.83 10h6.27c2.15 0 3.9 1.57 3.9 3.5S16.25 17 14.1 17H7v2h7.1c3.25 0 5.9-2.47 5.9-5.5S17.35 8 14.1 8z"/>
-                       </svg>
-                </div>
-                <div role="button" class="btn " style="margin: -78px; margin-left: 184px; margin-top: -191px;">Close
-                </div>
-</div>
+
+
+          <!--<div class="form-group">-->
+              <!--&lt;!&ndash;<a href="#myModal" input class="form-control input-md"  id="inputmd" type="text"  placeholder="Take a note..." aria-label="Search" data-toggle="modal"></a>&ndash;&gt;-->
+         <!--<div class="container" id="textinput">-->
+
+      <!--<div id="menu"><input class="form-control input-md"  id="inputmd" type="text"  placeholder="Title" >-->
+
+
+
+          <!--<ul id="abcd">-->
+              <!--<textarea name="take a note" id="text" placeholder=" take a note.."></textarea></ul>-->
+                        <!--&lt;!&ndash;<div  id="note-button-1">&ndash;&gt;-->
+                             <!--<div role="button" class="btn" style="margin: 7px; margin-left: -8px">-->
+                           <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="remainder">-->
+                                <!--<path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>-->
+                                <!--<path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>-->
+                               <!--</svg></div></a>-->
+                            <!--<ul class="dropdown-menu" id="note-button-1-actions" style="display:none">-->
+                                   <!--<label>Remainder</label>-->
+                                  <!--<li><a href="#">Later today</a></li>-->
+                                  <!--<li><a href="#">Tomorrow</a></li>-->
+                                  <!--<li><a href="#">Next week</a></li>-->
+                                  <!--<li><a href="#"><svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">-->
+                                   <!--<path d="m23.99 4c-11.05 0-19.99 8.95-19.99 20s8.94 20 19.99 20c11.05 0 20.01-8.95 20.01-20s-8.96-20-20.01-20zm0.01 36c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z"/>-->
+                                   <!--<path d="m0 0h48v48h-48z" fill="none"/>-->
+                                   <!--<path d="m25 14h-3v12l10.49 6.3 1.51-2.46-9-5.34z"/>-->
+                                  <!--</svg>-->
+                                  <!--Select date and time</a></li>-->
+                              <!--</ul>-->
+                          <!--</div>-->
+                <!--<div role="button" class="btn " style="margin: -20px;margin-top: -100px;margin-left: 24px;" aria-label="Collaborator">-->
+                           <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator">-->
+                              <!--<path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>-->
+                           <!--</svg></div>-->
+                <!--<div role="button" class="btn " style="margin: -39px; margin-left: -1px; margin-top: -115px;">-->
+                          <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">-->
+                            <!--<path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/>-->
+                            <!--<circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/>-->
+                          <!--</svg> </div>-->
+                <!--<div role="button" class="btn " style="margin: -39px; margin-left: 20px;margin-top: -113px;">-->
+                         <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">-->
+                                <!--<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>-->
+                         <!--</svg></div>-->
+                <!--<div role="button" class="btn " style="margin: -39px; margin-left: 21px;margin-top: -115px;">-->
+                       <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive">-->
+                           <!--<path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>-->
+                       <!--</svg></div>-->
+                 <!--<div  id="note-button-6">-->
+                          <!--<div role="button" class="btn " style="margin: -26px; margin-left: 191px; margin-top: -84px;">-->
+                              <!--<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18"  height="18" width="25">-->
+                                      <!--<path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0-->
+                                             <!--5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>-->
+                              <!--</svg>-->
+                          <!--</div>-->
+                      <!--<ul class="dropdown-menu" id="note-button-6-actions" style="display:none">-->
+                          <!--<li><a href="#">Change labels</a></li>-->
+                          <!--<li><a href="#">Add drawing</a></li>-->
+                          <!--<li><a href="#">Show tick boxes</a></li>-->
+                      <!--</ul>-->
+                  <!--</div>-->
+                <!--<div role="button" class="btn " style="margin: -26px; margin-left: 244px; margin-top: -144px;">-->
+                       <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">-->
+                                <!--<path d="M14.1 8H7.83l2.59-2.59L9 4 4 9l5 5 1.41-1.41L7.83 10h6.27c2.15 0 3.9 1.57 3.9 3.5S16.25 17 14.1 17H7v2h7.1c3.25 0 5.9-2.47 5.9-5.5S17.35 8 14.1 8z"/>-->
+                       <!--</svg>-->
+                <!--</div>-->
+                <!--<div role="button" class="btn " style="margin: -78px; margin-left: 184px; margin-top: -191px;">Close-->
+                <!--</div>-->
+
                  <!--<div id="container">-->
                               <!--<div class="buttons">-->
                                   <!--<button class="grid">Grid View</button>-->
@@ -229,92 +278,92 @@
                               <!--</ul>-->
                   <!--</div>-->
 
-                    <div class="card" style="width: 50%; height:50%; border: 1px solid #dcd5d5; align-items:center;">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <!--<a href="#" class="card-link">Card link</a>-->
+                    <!--<div class="card" style="width: 50%; height:50%; border: 1px solid #dcd5d5; align-items:center;">-->
+                      <!--<div class="card-body">-->
+                        <!--<h5 class="card-title">Card title</h5>-->
+                        <!--&lt;!&ndash;<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>&ndash;&gt;-->
+                        <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                        <!--&lt;!&ndash;<a href="#" class="card-link">Card link</a>&ndash;&gt;-->
 
-                          <div role="button" class="btn" style="margin-left: 210px;margin-top: -98px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                              <path fill="none" d="M0 0h24v24H0z"/>
-                              <path fill="#202124" d="M17 4v7l2 3v2h-6v5l-1 1-1-1v-5H5v-2l2-3V4c0-1.1.9-2 2-2h6c1.11 0 2 .89 2 2zM9 4v7.75L7.5 14h9L15 11.75V4H9z"/>
-                          </svg>
-                          </div>
-                          <div  id="note-button-2">
-                             <div role="button" class="btn" style="margin: 7px; margin-left: -8px">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="remainder">
-                                <path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>
-                                <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>
-                               </svg></div></a>
-                            <ul class="dropdown-menu" id="note-button-2-actions" style="display:none">
-                                   <label>Remainder</label>
-                                  <li><a href="#">Later today</a></li>
-                                  <li><a href="#">Tomorrow</a></li>
-                                  <li><a href="#">Next week</a></li>
-                                  <li><a href="#"><svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">
-                                   <path d="m23.99 4c-11.05 0-19.99 8.95-19.99 20s8.94 20 19.99 20c11.05 0 20.01-8.95 20.01-20s-8.96-20-20.01-20zm0.01 36c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z"/>
-                                   <path d="m0 0h48v48h-48z" fill="none"/>
-                                   <path d="m25 14h-3v12l10.49 6.3 1.51-2.46-9-5.34z"/>
-                                  </svg>
-                                  Select date and time</a></li>
-                              </ul>
-                          </div>
-                        <!--<a href="#" class="card-link">Another link</a>-->
-                            <div role="button" class="btn " style="margin: -20px;margin-top: -100px;margin-left: 24px;" aria-label="Collaborator">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator">
-                              <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
-                           </svg></div>
+                          <!--<div role="button" class="btn" style="margin-left: 210px;margin-top: -98px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">-->
+                              <!--<path fill="none" d="M0 0h24v24H0z"/>-->
+                              <!--<path fill="#202124" d="M17 4v7l2 3v2h-6v5l-1 1-1-1v-5H5v-2l2-3V4c0-1.1.9-2 2-2h6c1.11 0 2 .89 2 2zM9 4v7.75L7.5 14h9L15 11.75V4H9z"/>-->
+                          <!--</svg>-->
+                          <!--</div>-->
+                          <!--<div  id="note-button-2">-->
+                             <!--<div role="button" class="btn" style="margin: 7px; margin-left: -8px">-->
+                           <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="remainder">-->
+                                <!--<path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>-->
+                                <!--<path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>-->
+                               <!--</svg></div></a>-->
+                            <!--<ul class="dropdown-menu" id="note-button-2-actions" style="display:none">-->
+                                   <!--<label>Remainder</label>-->
+                                  <!--<li><a href="#">Later today</a></li>-->
+                                  <!--<li><a href="#">Tomorrow</a></li>-->
+                                  <!--<li><a href="#">Next week</a></li>-->
+                                  <!--<li><a href="#"><svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">-->
+                                   <!--<path d="m23.99 4c-11.05 0-19.99 8.95-19.99 20s8.94 20 19.99 20c11.05 0 20.01-8.95 20.01-20s-8.96-20-20.01-20zm0.01 36c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16z"/>-->
+                                   <!--<path d="m0 0h48v48h-48z" fill="none"/>-->
+                                   <!--<path d="m25 14h-3v12l10.49 6.3 1.51-2.46-9-5.34z"/>-->
+                                  <!--</svg>-->
+                                  <!--Select date and time</a></li>-->
+                              <!--</ul>-->
+                          <!--</div>-->
+                        <!--&lt;!&ndash;<a href="#" class="card-link">Another link</a>&ndash;&gt;-->
+                            <!--<div role="button" class="btn " style="margin: -20px;margin-top: -100px;margin-left: 24px;" aria-label="Collaborator">-->
+                           <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator">-->
+                              <!--<path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>-->
+                           <!--</svg></div>-->
 
-                          <div class="dropdown">
-                              <button class="dropbtn" style="margin: -39px; margin-left: -1px; margin-top: -35px;">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                    <path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/>
-                                    <circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/>
-                                  </svg> </button>
-                                  <div class="dropdown-content">
-                                    <a href="#">Link 1</a>
-                                    <a href="#">Link 2</a>
-                                    <!--<a href="#">Link 3</a>-->
-                                  </div>
-                                </div>
+                          <!--<div class="dropdown">-->
+                              <!--<button class="dropbtn" style="margin: -39px; margin-left: -1px; margin-top: -35px;">-->
+                                  <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">-->
+                                    <!--<path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/>-->
+                                    <!--<circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/>-->
+                                  <!--</svg> </button>-->
+                                  <!--<div class="dropdown-content">-->
+                                    <!--<a href="#">Link 1</a>-->
+                                    <!--<a href="#">Link 2</a>-->
+                                    <!--&lt;!&ndash;<a href="#">Link 3</a>&ndash;&gt;-->
+                                  <!--</div>-->
+                                <!--</div>-->
 
-                        <div role="button" class="btn " style="margin: -39px; margin-left: 20px;margin-top: -113px;">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">
-                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
-                                 </svg></div>
-                        <div role="button" class="btn " style="margin: -39px; margin-left: 21px;margin-top: -115px;">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive">
-                                   <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
-                               </svg></div>
-                         <div  id="note-button-3">
-                          <div role="button" class="btn " style="margin: -26px; margin-left: 191px; margin-top: -85px;">
-                              <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18"  height="18" width="25">
-                                      <path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0
-                                             5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>
-                              </svg>
-                          </div>
-                      <ul class="dropdown-menu" id="note-button-3-actions" style="display:none">
-                          <li><a href="#">Change labels</a></li>
-                          <li><a href="#">Add drawing</a></li>
-                          <li><a href="#">Show tick boxes</a></li>
-                      </ul>
-                      </div>
-                      </div>
-                    </div>
-
+                        <!--<div role="button" class="btn " style="margin: -39px; margin-left: 20px;margin-top: -113px;">-->
+                                 <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">-->
+                                        <!--<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>-->
+                                 <!--</svg></div>-->
+                        <!--<div role="button" class="btn " style="margin: -39px; margin-left: 21px;margin-top: -115px;">-->
+                               <!--<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive">-->
+                                   <!--<path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>-->
+                               <!--</svg></div>-->
+                         <!--<div  id="note-button-3">-->
+                          <!--<div role="button" class="btn " style="margin: -26px; margin-left: 191px; margin-top: -85px;">-->
+                              <!--<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18"  height="18" width="25">-->
+                                      <!--<path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0-->
+                                             <!--5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>-->
+                              <!--</svg>-->
+                          <!--</div>-->
+                      <!--<ul class="dropdown-menu" id="note-button-3-actions" style="display:none">-->
+                          <!--<li><a href="#">Change labels</a></li>-->
+                          <!--<li><a href="#">Add drawing</a></li>-->
+                          <!--<li><a href="#">Show tick boxes</a></li>-->
+                      <!--</ul>-->
+                      <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+<!--
            </div>
           </div>
       </div>
-      </div>
+      </div>-->
 
-</div>
+<!--</div>-->
 
-</div>
-</div>
-</div>
-</div>
-</header>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</header>-->
 
 
     <!--&lt;!&ndash;<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>&ndash;&gt;-->
@@ -323,6 +372,125 @@
     <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>-->
     <!--&lt;!&ndash;<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>&ndash;&gt;-->
+<div class="container" style="background-color: white;
+    height: 601px;">
+<div class="panel panel-default" style="
+width: 606px; margin-left: 277px;margin-top: 91px;">
+<div class="panel-body" style="
+width: 606px; ">
+<!--<form action="{% url 'create_note' %}" method="post" name="frmPanel">-->
+<!--<input type="text" name="frmText" placeholder="Title .." style="-->
+<!--border-width: 1px;-->
+<!--border-style: inset;-->
+<!--border-color: red;-->
+<!--height: 35px;-->
+<!--font-size: 21px;"/><br><br>-->
+<!--<textarea rows="4" cols="50" placeholder="Take a note ..">-->
+<!--</textarea><br>-->
+<!--<input type="button" value="submit" name="frmSubmit" style="margin-left: 315px;" />-->
 
+<!--</form>-->
+<form action="{% url 'create_note' %}" method="post" id="ajax_create">
+     {% csrf_token %}
+                   <input name="title" type="text" value="{{note.title}}" placeholder="Title .." id="frmTitle"><br>
+                    <input name="description" type="text" value="{{note.description}}" placeholder="Take a note .." id="frmDescription" ><br>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="remainder">
+                                <path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>
+                                <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>
+    </svg>
+
+                    Is Pinned
+                    Yes <input name="is_pinned" type="radio" value="{{note.is_pinned}}" >
+                    No <input name="is_pinned" type="radio" value="{{note.is_pinned}}" ><br><br>
+
+                         <abbr title="choose Colors"><select name="color" style="width: 55px;">
+                            <option value="white" style="background-color:white;"></option>
+                            <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
+                            <option value="#FFD"  style="background-color:#FFD;"></option>
+                            <option value="lightsalmon" style="background-color:lightsalmon;"></option>
+                            <option value="salmon" style="background-color:salmon;"></option>
+                            <option value="darksalmon" style="background-color:darksalmon;"></option>
+                            <option value="lawngreen" style="background-color:lawngreen;"></option>
+                            <option value="lightgreen" style="background-color:lightgreen;"></option>
+                            <option value="lightcyan" style="background-color:lightcyan;">	</option>
+                            <option value="lightskyblue	" style="background-color:lightskyblue;"></option>
+                            <option value="rgb(215, 174, 251)" style="background-color:rgb(215, 174, 251);"></option>
+                            <option value="rgb(174, 203, 250)" style="background-color:rgb(174, 203, 250);"></option>
+                            <option value="rgb(253, 207, 232)" style="background-color:rgb(253, 207, 232);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+
+                        </select></abbr>
+                    <input type="submit" value="Close" onclick="myFunction" id="create_note" class="btnClose"/>
+
+</form>
+
+</div>
+
+
+</div>
+    {% for post in notes_obj %}
+
+
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id">
+  <div class="thumbnail" id="color" style="background-color:{{post.color}};">
+    <div class="caption">
+        <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
+        {{ post.title }}</a></h2>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+      </div>
+    <p>{{ post.description }}</p>
+
+    <div class="lable_div" id="ldiv_id">{{post.label}}</div>
+
+    <div class="caption card-footer">
+      <ul class="list-inline">
+          <medium><a href="{% url 'note_delete' post.pk %}" data-toggle="modal" data-target="#deleteModal">Del</a></medium>
+              <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium><a href="#">Pin</a></medium>
+          <medium><a href="#" >Arch</a></medium>
+          <medium><a href="#" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+              <div id="lableModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium><a href="{% url 'note_reminder' post.pk %}">Remind</a> </medium>
+
+          <medium><a href="#" >colab</a></medium>
+        {# <li><i class="fa fa-user"></i></li> #}
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+
+
+<!--container div -->
+</div>
+
+
+
+
+</div>
 </body>
 </html>
