@@ -34,7 +34,9 @@ urlpatterns = [
     # path('note_reminder/',views.note_reminder),
 
     path('index/',views.index,name='pagination'),
-    path('lazy_load_notes/',views.lazy_load_notes,name='lazy_load_notes')
+    path('lazy_load_notes/',views.lazy_load_notes,name='lazy_load_notes'),
+
+    path('copy/<int:pk>/',views.copy_note,name='copy_note')
 
 ]
 if settings.DEBUG:

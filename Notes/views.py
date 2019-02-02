@@ -73,7 +73,6 @@ def show_notes(request):
 
 
 def note_edit(request, pk):
-
     """
 
     :param request:
@@ -128,14 +127,10 @@ class note_update(UpdateView):
         return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
-
-
 def note_delete(request, pk):
     note = Notes.objects.get(id=pk)
     print("note = >", note)
     return render(request, 'Notes/note_delete.html', {'note': note})
-
-
 
 
 class note_delete_note(DeleteView):
@@ -186,6 +181,31 @@ def note_reminder(request, pk):
 
         return redirect('show_notes')
     return render(request, 'Notes/note_reminder.html', {'note': note})
+
+
+def copy_note(request, pk):
+    note = Notes.objects.get(id=pk)
+
+    note2 = note
+    note2.id = note.id + 1
+    note2.save()
+
+    return redirect('show_notes')
+
+
+def archive(request,pk):
+
+    note=Notes.objects.get(id=pk)
+
+    if note.is_archived is True:
+        note.is_archived=False
+        note.save()
+
+    else:
+        note.is_archived=True
+        note.save()
+
+    return redirect('show_notes')
 
 
 # class reminder_save(View):

@@ -377,7 +377,7 @@
 <div class="panel panel-default" style="
 width: 606px; margin-left: 277px;margin-top: 91px;">
 <div class="panel-body" style="
-width: 606px; ">
+width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);width: 606px;" >
 <!--<form action="{% url 'create_note' %}" method="post" name="frmPanel">-->
 <!--<input type="text" name="frmText" placeholder="Title .." style="-->
 <!--border-width: 1px;-->
@@ -428,13 +428,24 @@ width: 606px; ">
 
     <span role="button" id="Colab" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
     margin-bottom: -5px;
 ">
                               <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
-                           </svg>
+    </svg></abbr></span>
 
     </span>
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
+</svg>
+    </span>
+
+
+    <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive1">
+                           <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
+    </svg></span>
+
                     <input type="submit" value="Close" onclick="myFunction" id="create_note" class="btnClose"/>
 
 </form>
@@ -485,6 +496,7 @@ width: 606px; ">
           <medium><a href="{% url 'note_reminder' post.pk %}">Remind</a> </medium>
 
           <medium><a href="#" >colab</a></medium>
+          <medium><a href="{%url 'copy_note' post.pk %}" >Cp</a></medium>
         {# <li><i class="fa fa-user"></i></li> #}
       </ul>
     </div>
