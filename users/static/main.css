@@ -1019,6 +1019,7 @@ padding-bottom: 2px;
 padding-left: 6px;
 height: 27px;
 width: 308px;
+
 }
 
 #frmDescription{
@@ -1054,5 +1055,22 @@ margin-top: 8px;
     width: 66px;
     padding-left: 6px;
     margin-left: 507px;
+
+}
+
+#reminder{
+
+
+    margin-bottom: -6px;
+    margin-left: -22px;
+}
+
+#Colab{
+
+
+    /* margin-top: -19px; */
+    margin-bottom: --4px;
+    /* right: 16px; */
+    margin-left: 7px;
 
 }

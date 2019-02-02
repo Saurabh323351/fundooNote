@@ -9,22 +9,23 @@
         No <input name="is_pinned" type="radio" value="{{note.is_pinned}}" ><br>
         Select Color: <Br>
             <select name="color">
-                <option value="white">white</option>
+                <option value="{{note.color}}" style="background-color:{{note.color}};">{{note.color}}</option>
                             <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
-                            <option value="#FFD">Light Yellow</option>
-                            <option value="lightsalmon">lightsalmon</option>
-                            <option value="salmon">salmon</option>
-                            <option value="darksalmon">darksalmon</option>
-                            <option value="lawngreen">lawngreen</option>
-                            <option value="lightgreen">lightgreen</option>
-                            <option value="lightcyan">lightcyan	</option>
-                            <option value="lightskyblue	">lightskyblue</option>
-                            <option value="rgb(215, 174, 251)">Google color1</option>
-                            <option value="rgb(174, 203, 250)">Google color2</option>
-                            <option value="rgb(253, 207, 232)">Google color3</option>
-                            <option value="rgb(230, 201, 168)">Google color4</option>
-                            <option value="rgb(230, 201, 168)">Google color5</option>
-                            <option value="rgb(230, 201, 168)">Google color6</option>
+                            <option value="#FFD"  style="background-color:#FFD;"></option>
+
+                            <option value="lightsalmon" style="background-color:lightsalmon;"></option>
+                            <option value="salmon" style="background-color:salmon;"></option>
+                            <option value="darksalmon" style="background-color:darksalmon;"></option>
+                            <option value="lawngreen" style="background-color:lawngreen;"></option>
+                            <option value="lightgreen" style="background-color:lightgreen;"></option>
+                            <option value="lightcyan" style="background-color:lightcyan;">	</option>
+                            <option value="lightskyblue	" style="background-color:lightskyblue;"></option>
+                            <option value="rgb(215, 174, 251)" style="background-color:rgb(215, 174, 251);"></option>
+                            <option value="rgb(174, 203, 250)" style="background-color:rgb(174, 203, 250);"></option>
+                            <option value="rgb(253, 207, 232)" style="background-color:rgb(253, 207, 232);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
             </select><br>
     <input type="button" value="submit" id ="submit_id" onclick="submitForm()" />
 
