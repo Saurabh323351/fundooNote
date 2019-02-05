@@ -27,7 +27,7 @@ SECRET_KEY = '2im=$%$j)3a-pho2b29q(xihti(dc)+*i77&r+j=xve6+$h(aq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 # Application definition
 
@@ -98,11 +98,11 @@ WSGI_APPLICATION = 'fundooNotes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fandoo_db',
-        'USER': 'fandoo_user',
-        'PASSWORD': 'bridgeit',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'postgres',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': 'postgres.cera9ml7wxfg.ap-south-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
