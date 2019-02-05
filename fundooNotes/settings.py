@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     # 'rest_auth',
     'social_django',
-    'Notes'
+    'Notes',
+    'Labels'
 ]
 
 MIDDLEWARE = [

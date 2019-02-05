@@ -1,3 +1,15 @@
+"""
+forms.py
+
+    This is responsible to create desired forms required
+    by respective views to render respective forms.
+
+
+Author: Saurabh Singh
+
+Since : 4 Feb , 2019
+"""
+
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

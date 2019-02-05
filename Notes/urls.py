@@ -1,3 +1,16 @@
+"""
+urls.py
+
+    Every request that comes to django ,Django send each request to root urls.py  first.
+        root urls.py comes to this optional app specific urls.py file if it exist
+
+        this page contains urls for all the pages ,these urls determines where each request can
+        be handled and desired response
+
+Author: Saurabh Singh
+Since : 4 Feb ,2019
+"""
+
 from django.urls import path
 from . import views
 

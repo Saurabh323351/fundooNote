@@ -1,3 +1,18 @@
+"""
+views.py
+
+    This is responsible to handle each request which is send by user.
+        Actually when request comes to the django ,it send it to the urls.py
+        and urls.py send that request to views.py to handle that request and
+        return proper response.
+
+:return it returns desired response to each request
+
+Author: Saurabh Singh
+
+Since : 4 Feb , 2019
+"""
+
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -42,7 +57,19 @@ def create_note(request):
         """
 
         if form.is_valid():
-            form.save()
+            is_pinned = request.POST.get('is_pinned')
+            # is_pinned_no=request.POST.get('is_pinned_no')
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            color = request.POST.get('color')
+            print(is_pinned, ' --> is_pinned')
+            # print(is_pinned_no, ' --> is_pinned_no')
+            print(title, ' --> title')
+            print(description, ' --> description')
+            print(color, ' --> color')
+
+            f = form.save()
+            print(f.is_pinned, '------>')
 
         return redirect('show_notes')
     else:
@@ -67,9 +94,17 @@ def show_notes(request):
     # Here i am taking out all the notes from database
     # according to note '-created_time' but in descending order
 
-    notes_obj = Notes.objects.all().order_by('-created_time')
+    # notes_obj = Notes.objects.all().order_by('-created_time')
+    notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False).order_by('-created_time')
+    print(notes_obj)
+    pin_notes = Notes.objects.filter(is_pinned=True, trash=False).order_by('-created_time')
+    print(pin_notes, '-->', 'pin_notes')
 
-    return render(request, 'users/base.html', {'notes_obj': notes_obj})
+    context = {'notes_obj': notes_obj,
+               'pin_notes': pin_notes
+
+               }
+    return render(request, 'users/base.html', context=context)
 
 
 def note_edit(request, pk):
@@ -142,7 +177,16 @@ class note_delete_note(DeleteView):
                 pk = kwargs.get('pk', None)
                 obj = Notes.objects.get(pk=pk)
                 print("obj => ", obj)
-                obj.delete()
+
+                if obj.trash is False:
+                    obj.trash=True
+                    obj.save()
+
+                else:
+                    obj.trash=False
+                    obj.delete()
+
+
                 response_data['status'] = True
                 response_data['message'] = "Deleted Successfully"
                 return redirect('show_notes')
@@ -153,6 +197,12 @@ class note_delete_note(DeleteView):
         else:
             response_data['message'] = "Missing note identifier (id)"
         return HttpResponse(json.dumps(response_data), content_type='application/json')
+
+def show_trash_notes(request):
+
+    notes=Notes.objects.filter(trash=True).order_by('-created_time')
+
+    return render(request,'users/base.html',{'notes_obj':notes})
 
 
 # class note_reminder(CreateView):
@@ -192,7 +242,6 @@ def copy_note(request, pk):
 
     return redirect('show_notes')
 
-
 def archive(request,pk):
 
     note=Notes.objects.get(id=pk)
@@ -200,12 +249,45 @@ def archive(request,pk):
     if note.is_archived is True:
         note.is_archived=False
         note.save()
-
+        return redirect('show_archive_notes')
     else:
         note.is_archived=True
         note.save()
 
     return redirect('show_notes')
+
+
+
+def show_archive_notes(request):
+    notes_obj = Notes.objects.filter(is_archived=True).order_by('-created_time')
+    print(notes_obj)
+
+    return render(request, 'users/base.html', {'notes_obj': notes_obj})
+
+
+def pin(request,pk):
+    note = Notes.objects.get(id=pk)
+
+    if note.is_pinned is True:
+        note.is_pinned = False
+        note.save()
+
+    else:
+        note.is_pinned = True
+        note.save()
+
+    return redirect('show_notes')
+
+def show_pin_notes(request):
+
+    pin_notes = Notes.objects.filter(is_pinned=True).order_by('-created_time')
+    print(pin_notes, '-->', 'pin_notes')
+
+    context = {
+               'notes_obj': pin_notes
+
+               }
+    return render(request, 'users/base.html', context=context)
 
 
 # class reminder_save(View):

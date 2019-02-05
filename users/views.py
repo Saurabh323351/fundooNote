@@ -1,3 +1,18 @@
+"""
+views.py
+
+    This is responsible to handle each request which is send by user.
+        Actually when request comes to the django ,it send it to the urls.py
+        and urls.py send that request to views.py to handle that request and
+        return proper response.
+
+:return it returns desired response to each request
+
+Author: Saurabh Singh
+
+Since : 4 Feb , 2019
+"""
+
 import jwt
 
 from .forms import UseRegistrationForm, UserUpdateForm, ProfileUpdateForm

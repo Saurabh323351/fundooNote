@@ -1,3 +1,14 @@
+"""
+serializers.py
+
+    This is responsible to create serializer.
+
+
+Author: Saurabh Singh
+
+Since : 4 Feb , 2019
+"""
+
 from rest_framework import serializers
 from django.contrib.auth.models import User
 

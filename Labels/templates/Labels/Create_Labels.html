@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'create_label' %}" name="frmCreateLabel" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <!--<input type="text" name="label" id="label">-->
+    <input type="submit" value="create" name="submit_label">
+
+</form>
+</body>
+</html>

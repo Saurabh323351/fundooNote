@@ -1,3 +1,16 @@
+"""
+forms.py
+
+    This is responsible to create desired forms required
+    by respective views to render respective forms.
+
+
+Author: Saurabh Singh
+
+Since : 4 Feb , 2019
+"""
+
+
 from django import forms
 from .models import Notes
 
