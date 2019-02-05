@@ -111,8 +111,8 @@ def note_edit(request, pk):
     """
 
     :param request:
-    :param pk:
-    :return:
+    :param pk:get id of particular note to edit
+    :return:it will render html file
     """
     note = Notes.objects.get(id=pk)
     print("note = ", note)
@@ -123,7 +123,18 @@ def note_edit(request, pk):
 
 
 class note_update(UpdateView):
+    """
+    This method is used to update note information
+    """
     def post(self, request, *args, **kwargs):
+        """
+        This will accept POST request to update note information
+
+        :param request: POST request
+        :param args: optional
+        :param kwargs: it will provide pk of note
+        :return: it will return json response
+        """
         print('----------------------------------')
         response_data = {}
         response_data['status'] = False
@@ -152,6 +163,15 @@ class note_update(UpdateView):
         return HttpResponse(json.dumps(response_data), content_type='application/json')
 
     def get(self, request, *args, **kwargs):
+        """
+        This will accept GET request to provide note information
+
+        :param request: GET request
+        :param args: optional
+        :param kwargs:optional
+        :return: it will return json response
+        """
+
         print("in get call")
         response_data = {}
         for name, value in request.POST.items():
@@ -163,13 +183,35 @@ class note_update(UpdateView):
 
 
 def note_delete(request, pk):
+    """
+    This function is used to render particular note
+    html file
+
+    :param request:POST
+    :param pk: pk of particular note
+    :return: render
+    """
     note = Notes.objects.get(id=pk)
     print("note = >", note)
     return render(request, 'Notes/note_delete.html', {'note': note})
 
 
 class note_delete_note(DeleteView):
+    """
+    This class based view is used to delete particular Note
+
+    """
     def post(self, request, *args, **kwargs):
+
+        """
+        This will accept POST request to delete Note
+
+        :param request: POST request
+        :param args: optional
+        :param kwargs: it will provide pk of note
+        :return: it will return json response
+        """
+
         response_data = {}
         response_data['status'] = False
         if kwargs.get('pk', None):
@@ -199,6 +241,12 @@ class note_delete_note(DeleteView):
         return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 def show_trash_notes(request):
+    """
+    This function is used to display trash notes
+
+    :param request:request from user
+    :return: render html file
+    """
 
     notes=Notes.objects.filter(trash=True).order_by('-created_time')
 
@@ -217,6 +265,13 @@ def show_trash_notes(request):
 
 
 def note_reminder(request, pk):
+    """
+    This function  is used to set reminder
+
+    :param request:request from user
+    :param pk: pk of particular note to set reminder
+    :return: render and redirect
+    """
     note = Notes.objects.get(id=pk)
     if request.method == 'POST':
         print(request.POST, 'Hii i am post wala')
@@ -234,6 +289,13 @@ def note_reminder(request, pk):
 
 
 def copy_note(request, pk):
+    """
+    This function is used to make copy of existing note
+
+    :param request:request from specific note
+    :param pk: pk of particular note to make copy of it
+    :return:redirect
+    """
     note = Notes.objects.get(id=pk)
 
     note2 = note
@@ -243,6 +305,13 @@ def copy_note(request, pk):
     return redirect('show_notes')
 
 def archive(request,pk):
+    """
+    This function is used to make particular Note archive
+    and Un-archive.
+    :param request:
+    :param pk:
+    :return:
+    """
 
     note=Notes.objects.get(id=pk)
 
@@ -259,6 +328,12 @@ def archive(request,pk):
 
 
 def show_archive_notes(request):
+    """
+    This function is used to display Archive  Notes
+
+    :param request: request
+    :return: render html file
+    """
     notes_obj = Notes.objects.filter(is_archived=True).order_by('-created_time')
     print(notes_obj)
 
@@ -266,6 +341,13 @@ def show_archive_notes(request):
 
 
 def pin(request,pk):
+    """
+    This function is used to pin or Unpin particular Note
+
+    :param request:request of particular Note to pin or Unpin
+    :param pk: pk of that Note
+    :return: redirect
+    """
     note = Notes.objects.get(id=pk)
 
     if note.is_pinned is True:
@@ -279,7 +361,11 @@ def pin(request,pk):
     return redirect('show_notes')
 
 def show_pin_notes(request):
-
+    """
+    This function is used to display PINNED note
+    :param request: request to display PINNED notes
+    :return: render html file
+    """
     pin_notes = Notes.objects.filter(is_pinned=True).order_by('-created_time')
     print(pin_notes, '-->', 'pin_notes')
 
