@@ -5,12 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<form action="{% url 'create_label' %}" name="frmCreateLabel" method="post">
+
+<form action="{% url 'note_lable_note' note.id %}" name="frmCreateLabel" method="post">
     {% csrf_token %}
-    {{form.as_p}}
-    <!--<input type="text" name="label" id="label">-->
+    <input type="text" name="label" id="label" value="{{lable_obj}}">
     <input type="submit" value="create" name="submit_label">
 
 </form>
+
+<!--<form action="{% url 'note_lable_note' note.id %}" method="post" id="ajax_label" >-->
+    <!--{% csrf_token %}-->
+    <!--label<br><input name="label" type="text" id = "linput_id" value="{{note.label}}" >-->
+<!--<input type="submit" value="Update" id ="label_id"/>-->
+<!--</form>-->
+
 </body>
 </html>

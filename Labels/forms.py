@@ -4,7 +4,7 @@ class CreateLabels(forms.ModelForm):
 
     class Meta:
         model=Labels
-        fields='__all__'
+        fields=['label']
     # label=forms.CharField(max_length=100)
 
 class UpdateLabels(forms.ModelForm):

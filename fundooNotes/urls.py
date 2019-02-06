@@ -62,7 +62,12 @@ urlpatterns = [
 
 # --------------- Labels-------------------------------------------------------
     path('create_label/',label_views.create_label,name='create_label'),
-    path('update_label/<int:pk>/',label_views.update_label,name='update_label')
+    path('update_label/<int:pk>/',label_views.update_label,name='update_label'),
+
+
+    path('lable/<int:pk>/', label_views.note_lable, name='note_lable'),
+    path('lable_note/<int:pk>/', label_views.note_lable_note, name='note_lable_note'),
+    path('delete_label/<int:pk>/', label_views.delete_label, name='delete_label'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

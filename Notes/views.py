@@ -33,7 +33,7 @@ from django.contrib.auth.models import User
 import json
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
-
+from Labels.models import Labels
 
 def create_note(request):
     """
@@ -100,9 +100,20 @@ def show_notes(request):
     pin_notes = Notes.objects.filter(is_pinned=True, trash=False).order_by('-created_time')
     print(pin_notes, '-->', 'pin_notes')
 
-    context = {'notes_obj': notes_obj,
-               'pin_notes': pin_notes
+    labels_object=Labels.objects.exclude(note_id=None)
+    # labels_object2=Labels.objects.all()
+    # l=labels_object2.__contains__(labels_object1)==False
 
+    # Name.objects.exclude(alias__isnull=True)
+    #
+    # Name.objects.exclude(alias__isnull=True).exclude(alias__exact='')
+
+    print(labels_object,"labels_object====>")
+    # print(labels_object[0].label)
+
+    context = {'notes_obj': notes_obj,
+               'pin_notes': pin_notes,
+                'labels_object':labels_object
                }
     return render(request, 'users/base.html', context=context)
 

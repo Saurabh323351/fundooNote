@@ -471,7 +471,7 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
 
 
 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id1">
-  <div class="thumbnail" id="color1" style="background-color:{{post1.color}};">
+  <div class="thumbnail" id="color1" style="background-color:{{post1.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;">
     <div class="caption">
         <h2><a href="{% url 'note_edit' post1.pk %}" data-toggle="modal" data-target="#myModal">
         {{ post1.title }}</a></h2>
@@ -508,7 +508,7 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
           </svg></a>
 
           </medium>
-          <medium>&nbsp<a href="#" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+          <medium>&nbsp<a href="{% url 'note_lable' post1.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
               <div id="lableModal1" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -567,8 +567,9 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
     {% for post in notes_obj %}
 
 
+
     <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id">
-  <div class="thumbnail" id="color" style="background-color:{{post.color}};">
+  <div class="thumbnail" id="color" style="background-color:{{post.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;">
     <div class="caption">
         <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
         {{ post.title }}</a></h2>
@@ -581,8 +582,13 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
       </div>
     <p>{{ post.description }}</p>
 
-    <div class="lable_div" id="ldiv_id">{{post.label}}</div>
+            {% for la in labels_object %}
 
+            {% if la.note_id == post %}
+
+    <a href="{% url 'delete_label' la.pk %}"><span class="lable_div" id="ldiv_id">{{la.label}}</span></a>
+            {% endif %}
+            {% endfor %}
     <div class="caption card-footer">
       <ul class="list-inline">
           <medium><a href="{% url 'note_delete' post.pk %}" data-toggle="modal" data-target="#deleteModal">
@@ -605,7 +611,7 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
           </svg></a>
 
           </medium>
-          <medium>&nbsp<a href="#" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+          <medium>&nbsp<a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
               <div id="lableModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -641,6 +647,7 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
   </div>
   </div>
 </div>
+
 
 
 
