@@ -61,13 +61,17 @@ urlpatterns = [
     path('show_trash_notes', views.show_trash_notes, name='show_trash_notes'),
 
 # --------------- Labels-------------------------------------------------------
-    path('create_label/',label_views.create_label,name='create_label'),
-    path('update_label/<int:pk>/',label_views.update_label,name='update_label'),
-
+    path('create_label/', label_views.create_label, name='create_label'),
+    path('update_label/<int:pk>/', label_views.update_label, name='update_label'),
 
     path('lable/<int:pk>/', label_views.note_lable, name='note_lable'),
     path('lable_note/<int:pk>/', label_views.note_lable_note, name='note_lable_note'),
-    path('delete_label/<int:pk>/', label_views.delete_label, name='delete_label'),
+    path('delete_label/<int:pk>/', label_views.delete_label, name='delete_label'),  # just removes from Note
+
+    path('get_labels/', label_views.get_labels, name='get_labels'),
+    path('get_label_notes/<int:id>/', label_views.get_label_notes, name='get_label_notes'),
+
+    path('get_labels1/', label_views.get_labels1, name='get_labels1'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

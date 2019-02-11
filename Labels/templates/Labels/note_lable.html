@@ -2,10 +2,10 @@
 <html>
 <body>
 <h1>Lable Note</h1>
-<form action="{% url 'note_lable_note' note.id %}" method="post" id="ajax_label" >
+<form action="{% url 'create_label' %}" method="post" id="ajax_label" >
     {% csrf_token %}
-    label<br><input name="label" type="text" id = "linput_id" value="{{label_obj}}" >
-<input type="submit" value="Update" id ="label_id"/>
+    label<br><input name="label" type="text" id = "linput_id" value="" >
+<input type="submit" value="Create" id ="label_id"/>
 </form>
 </body>
 </html>
