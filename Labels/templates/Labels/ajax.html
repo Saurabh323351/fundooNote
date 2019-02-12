@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.getJSON("http://127.0.0.1:8000/get_labels1", function(result){
+
+
+
+
+      r1=JSON.parse(result.message)
+      console.log('---------------')
+      console.log(r1[0].pk)
+      console.log('----------------')
+
+      for(i=0;i<r1.length;i++){
+
+        $("#hi").append(r1[i].fields['label']+"  ")
+        }
+
+      $.each(result, function(i, field){
+
+        $("#hi").append(field[i].pk + " ");
+
+
+      });
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<button>Get JSON data</button>
+
+<div id="hi"></div>
+
+</body>
+</html>

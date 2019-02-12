@@ -19,15 +19,18 @@ def create_label(request):
 
     if request.method == 'POST':
 
-        label = request.POST.get('label')
-        label1 = request.POST.get('name')
-        # form = CreateLabels(request.POST)
-        print(label, ' label ====================>label')
-        print(label1, ' label1 ====================>label1')
-        user=request.user
-        is_exists=Labels.objects.filter(label=label).exists()
-        if is_exists is not True:
-            Labels.objects.create(label=label,user=user)
+        print(request.POST.get('#id85'))
+        # label = request.POST.get('label')
+        # label1 = request.POST.get('name')
+        # # form = CreateLabels(request.POST)
+        # print(label, ' label ====================>label')
+        # print(label1, ' label1 ====================>label1')
+        # user=request.user
+        # is_exists=Labels.objects.filter(label=label).exists()
+        # if is_exists is not True:
+        #     Labels.objects.create(label=label,user=user)
+
+
 
     return redirect('show_notes')
 
@@ -203,30 +206,30 @@ from django.http import JsonResponse
 from django.core import serializers
 
 def get_labels1(request):
-    if request.method=='POST':
-        labels1 = Labels.objects.all()
-        print(labels1,'===========>labels1')
-        label1 = request.POST.get('name')
-        print(label1, ' label1 ====================>label1====>')
-        # context = {'labels1': labels1}
-        # list1=[]
-        # for i in range(len(labels1)):
-        #     list1.append()
-        # users_list = list({'La':labels1})  # important: convert the QuerySet to a list object
-        response_data = {}
+    # if request.method=='POST':
+    labels1 = Labels.objects.all()
+    # print(labels1,'===========>labels1')
+    label1 = request.POST.get('name')
+    print(label1, ' label1 ====================>label1====>')
+    # context = {'labels1': labels1}
+    # list1=[]
+    # for i in range(len(labels1)):
+    #     list1.append()
+    # users_list = list({'La':labels1})  # important: convert the QuerySet to a list object
+    response_data = {}
 
-        response_data['message'] = serializers.serialize('json', labels1,fields=('label'))
-        # print(serializers.serialize('json', labels1,fields=('label')),'==========>message')
-        # print(serializers.serialize('json', labels1,fields=('label')),'yaha ckeck ker raha hu')
-        # print(users_list,'0--------------->')
-        # print(response_data['message'][1]['pk'])
-        # response_data['message']=labels1
-        # return JsonResponse(response_data, safe=False)
-        context={'labels1':labels1}
+    response_data['message'] = serializers.serialize('json', labels1,fields=('label'))
+    # print(serializers.serialize('json', labels1,fields=('label')),'==========>message')
+    # print(serializers.serialize('json', labels1,fields=('label')),'yaha ckeck ker raha hu')
+    # print(users_list,'0--------------->')
+    # print(response_data['message'][1]['pk'])
+    # response_data['message']=labels1
+    return JsonResponse(response_data, safe=False)
+    # context={'labels1':labels1}
 
-        return HttpResponse({'labels1':labels1})
-    else:
-        return HttpResponse('hi')
+    # return HttpResponse({'labels1':labels1})
+    # else:
+    #     return HttpResponse('hi')
     # return render(request,'users/base.html',context=context)
     # return render(request, 'users/base.html', context={'labels1': labels1})
     # return HttpResponse(json.simplejson.dumps(context), mimetype="application/json")
