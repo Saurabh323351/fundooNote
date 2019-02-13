@@ -10,6 +10,38 @@ from .forms import CreateLabels, UpdateLabels
 
 
 def create_label(request):
+    context = {}
+    context['success'] = False
+    context['message'] = None
+    context['data'] = None
+    if request.method=='POST':
+
+       label=request.POST.get('value')
+       user=request.user
+
+       is_exists=Labels.objects.filter(label=label).exists()
+
+       if is_exists is not True:
+           Labels.objects.create(label=label,user=user)
+           context['success'] = True
+           context['message'] = "label created successfully"
+           context['data'] = label
+           return JsonResponse(context,safe=False)
+
+       else:
+           context['success'] = False
+           context['message'] = "label Already exists"
+           context['data'] = label
+           return JsonResponse(context,safe=False)
+
+    else:
+        context['success'] =False
+        context['message'] = "Not a POST request"
+        context['data'] = None
+
+        return JsonResponse(context,safe=False)
+
+def edit_label(request):
     # obj=Labels.objects.get(label='1st')
     # print(obj.label,obj.user,obj.id ,obj.created_time)
     #
@@ -17,23 +49,36 @@ def create_label(request):
     # print(obj2.note_id,' ----object2 ----')
     # print(obj2.note_id.color,' ----object2 ----')
 
+    context = {}
+    context['success'] = False
+    context['message'] = None
+    context['data'] = None
     if request.method == 'POST':
 
-        print(request.POST.get('#id85'))
         # label = request.POST.get('label')
-        # label1 = request.POST.get('name')
-        # # form = CreateLabels(request.POST)
+        label1 = request.POST.get('name')
+        value = request.POST.get('value')
+        print(value, ' value ====================>label1')
+        # form = CreateLabels(request.POST)
         # print(label, ' label ====================>label')
-        # print(label1, ' label1 ====================>label1')
-        # user=request.user
-        # is_exists=Labels.objects.filter(label=label).exists()
+        print(label1, ' label1 ====================>label1')
+        user=request.user
+        is_exists=Labels.objects.filter(label=label1,user=user).exists()
+        print(is_exists,'--------->exists')
         # if is_exists is not True:
-        #     Labels.objects.create(label=label,user=user)
+        #     Labels.objects.create(label=label1,user=user)
+        if is_exists is True:
+            obj=Labels.objects.get(label=label1,user=user)
+            obj.label=value
+            obj.save()
 
+            context['success'] = True
+            context['message'] = "label Updated successfully"
+            context['data'] = value
 
+            return JsonResponse(context, safe=False)
 
     return redirect('show_notes')
-
     # else:
     #     return render(request, 'Labels/note_lable.html')
 
@@ -51,8 +96,40 @@ def update_label(request, pk):
     return render(request, 'Labels/update_label.html')
 
 
+
+def delete_label_from_db(request):
+
+    context={}
+    context['success']=False
+    context['message']=None
+    context['data']=None
+    if request.method=='POST':
+        label=request.POST.get('name')
+
+        label_obj=Labels.objects.get(label=label)
+        label_obj.delete()
+
+        context['success']=True
+        context['message'] ="label deleted successfully"
+        context['data'] = "label_obj"
+
+        # context=json.dumps(context)
+        print(context,'  ===>context1')
+        return JsonResponse(context, safe=False)
+    else:
+        # context=json.dumps(context)
+        context['message'] = "Not a POST request"
+        print(context,'  ===>context2')
+        return JsonResponse(context, safe=False)
+
+
+
+
 from Notes.models import Notes
 import json
+
+
+
 
 
 def note_lable(request, pk):

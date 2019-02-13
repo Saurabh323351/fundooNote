@@ -10,25 +10,6 @@
     <title>fundooNotes</title>
     <!-- Latest compiled and minified CSS -->
 
-
-     <!--home content add kiya yaha se -->
-
-     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
-    <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">-->
-    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet">-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-   <!--<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>-->
-   <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>-->
-   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>-->
-
-   <!--yaha tak kiya hu -->
-
-
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -55,16 +36,6 @@
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
 
-
-
-
-
-
-
-
-
-
-
 </head>
 <body>
 <div id="wrapper">
@@ -86,8 +57,14 @@
                         <i class="fa fa-bars"></i>
                     </a>
                     <a id="fundootitle" href="{% url 'home' %}">fundooNotes</a>
-                    <button class="gb_Df" aria-label="Search" role="button" id="searchicon" style="margin-top: 11px;">
-                          <svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
+
+                    <!--Search  button is Here-->
+
+                    <button class="gb_Df" aria-label="Search" role="button" id="searchicon1" style="margin-top: 11px;">
+
+                         <!--Search  button is Here-->
+
+                        <svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg">
                               <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                               <path d="M0 0h24v24H0z" fill="none"></path></svg></button>
 
@@ -97,8 +74,10 @@
                   <div class="form-group">
                         <!--<input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search">-->
 
-                      <input class="form-control input-lg" id="inputlg" type="text" type="search" placeholder="Search" aria-label="Search">
+                       <!--Search Bar is Here-->
+                      <input class="form-control input-lg" id="inputlg" type="text"  placeholder="Search" aria-label="Search">
 
+                         <!--Search Bar is Here-->
 
                   </div>
                   <button type="button" class="btn "><span class="glyphicon glyphicon-repeat"></span> </button>
@@ -176,6 +155,47 @@
             </ul>
         </nav>
     </div>
+
+
+
+        <!---------------------Trying to render search notes---------------------------------------------->
+<script>
+var title=""
+function click1(element){
+
+    console.log(element.id)
+    console.log(element.value)
+
+    title=element.value
+    }
+
+
+$(document).ready(function(){
+  $("#searchicon1").click(function(){
+
+alert("hi i am here")
+ <!--var id="#"+id-->
+   var value1=jQuery("#inputlg").val();
+   alert(value1,+"  value1")
+    $.post("http://127.0.0.1:8000/searching/",
+    {
+      title:value1
+
+
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+    });
+  });
+});
+
+</script>
+    <!---------------------Trying to render search notes---------------------------------------------->
+
+
+
+
 
 
 <div class="container" style="background-color: white;height: 601px;">
@@ -475,17 +495,17 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
         </div>
         <div class="modal-body">
 
-                        <button id="btn4" value="jj">hiii</button>
-                        <a href="{% url 'get_labels1' %}" >Labels ... </a>
-                        {% for labels1 in labels1 %}
-                        <div id="Labels_edit" ><a href="{% url 'get_label_notes' labels1.pk %}" >{{labels1.label}}</a></div>
+            <button id="btn4" value="jj"><b>Show Labels</b></button>
 
-                        {%endfor%}
-                        <div id="Label_">
 
-                            <form action="{% url 'create_label' %}" id="labelForm" method="post">
-                                <!--<input type="text" id="labelinput" name="l" value="HIII">-->
-                                <input  type="submit" value="submit">
+                         <div id="Label_">
+
+                            <form action="" id="labelForm" method="post">
+                                <!--<input type="text" id="labelinput" name="l" value="hardcoded" onclick="">-->
+                                <input type="button" id="btn10" value="Edit Done">
+                                <input type="button" id="btn11" value="Delete">
+            <input type="text" name="CreateLabel" value="" placeholder="enter label name"  onclick="clic(this)">
+                                <input  type="button"  id="btnCreate" value="Create" >
                             </form>
                         </div>
 
@@ -500,19 +520,103 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
                 </form>
 
 <script language="JavaScript">
+
+var id="";
+var name="";
+var value="";
+console.log(id+" "+"id")
 function clic(element)
 {
-   alert("Clicked on " + element.id);
+   console.log("Clicked on " + element);
+   console.log("Clicked on " + element.id);
+  console.log("Clicked on " + element.name);
+   console.log("Clicked on " + element.value);
+
+id=element.id;
+name=element.name;
+value=element.value;
+console.log(id+" "+"id")
 }
+
+
+$(document).ready(function(){
+  $("#btnCreate").click(function(){
+
+ <!--var id="#"+id-->
+   <!--var value1=jQuery(id).val();-->
+   <!--console.log(value1,+"  value1")-->
+    $.post("http://127.0.0.1:8000/create_label/",
+    {
+      name: name,
+      id: id,
+      value:value
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+    });
+  });
+});
+
+
+
+
+$(document).ready(function(){
+  $("#btn10").click(function(){
+
+ var id="#"+id
+   var value1=jQuery(id).val();
+   console.log(value1,+"  value1")
+    $.post("http://127.0.0.1:8000/edit_label/",
+    {
+      name: name,
+      id: id,
+      value:value
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+    });
+  });
+});
+
+
+
+$(document).ready(function(){
+  $("#btn11").click(function(){
+
+ id="#"+id
+   var value1=jQuery(id).val();
+   alert(value1,+"  value1----->");
+
+
+    $.post("http://127.0.0.1:8000/delete_label_from_db/",
+    {
+      name: name,
+
+      value:value
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+
+            jQuery(id).remove();
+
+            <!--r1=JSON.parse(data.message)-->
+    });
+
+
+
+  });
+});
+
+
 </script>
 
 
 
 
-            <!--<form action="{% url 'create_label' %}" method="post" id="CreateLabel">-->
-          <!--<input type="text" placeholder="enter label name" name="label">-->
-                <!--<input type="submit" value="create">-->
-                <!--</form>-->
+
 
         </div>
         <div class="modal-footer">
@@ -523,72 +627,62 @@ function clic(element)
     </div>
   </div>
 
-   <script>
-$(document).ready(function(){
-  $("#btn4").click(function(){
-    $.post("http://127.0.0.1:8000/get_labels1/",
-    {
-      name: "SaurabhRajat",
-      city: "Duckburg"
-    },
-    function(data,status){
-      alert("Data: " + data + "\nStatus: " + status);
+   <!--<script>-->
+<!--$(document).ready(function(){-->
+  <!--$("#btn4").click(function(){-->
+    <!--$.post("http://127.0.0.1:8000/get_labels1/",-->
+    <!--{-->
+      <!--name: "SaurabhRajat",-->
+      <!--city: "Duckburg"-->
+    <!--},-->
+    <!--function(data,status){-->
+      <!--alert("Data: " + data + "\nStatus: " + status);-->
+            <!--console.log(data)-->
+    <!--});-->
+  <!--});-->
+<!--});-->
+<!--</script>-->
 
-            console.log(data)
-    });
-  });
-});
-</script>
 
-
-<script>
-$(document).ready(function(){
-  $("#btn6").click(function(){
-    $.getJSON("http://127.0.0.1:8000/get_labels1/", function(result){
-      $.each(result, function(i, field){
-        $("div").append(field + " ");
-      });
-    });
-  });
-});
-</script>
+<!--<script>-->
+<!--$(document).ready(function(){-->
+  <!--$("#btn6").click(function(){-->
+    <!--$.getJSON("http://127.0.0.1:8000/get_labels1/", function(result){-->
+      <!--$.each(result, function(i, field){-->
+        <!--$("div").append(field + " ");-->
+      <!--});-->
+    <!--});-->
+  <!--});-->
+<!--});-->
+<!--</script>-->
 
 <script>
 $(document).ready(function(){
   $("#btn4").click(function(){
     $.get("http://127.0.0.1:8000/get_labels1/", function(data, status){
       r1=JSON.parse(data.message)
-      console.log('---------------')
-      console.log(r1[1].fields['label'])
-      console.log(r1[1].pk)
-
-      console.log('----------------')
+      //console.log('---------------')
+      //console.log(r1[1].fields['label'])
+      //console.log(r1[1].pk)
+      //console.log('----------------')
 
       for(i=0;i<r1.length;i++){
-
-
-
-
 var element = document.createElement("input");
 
-	//Assign different attributes to the element.
-	element.setAttribute("type", "text");
-	element.setAttribute("value", r1[i].fields['label']);
-	element.setAttribute("name", r1[i].fields['label']);
-	element.setAttribute("id", "id"+r1[i].pk );
 
+   //Assign different attributes to the element.
+   element.setAttribute("type", "text");
+   element.setAttribute("value", r1[i].fields['label']);
+   element.setAttribute("name", r1[i].fields['label']);
+   element.setAttribute("id", "id"+r1[i].pk );
+   element.setAttribute("onclick", "clic(this)" );
 
      var id="#"+"id"+r1[i].pk // important
      console.log(id)
-
     $("#labelForm").append(element)
-
-
-
-
         jQuery('#labelForm').append("<br>")
-    <!--console.log("text" + i  )-->
 
+    <!--console.log("text" + i  )-->
   <!--var value=jQuery("#id112").val();-->
         <!--console.log(value)-->
 
@@ -596,17 +690,13 @@ var element = document.createElement("input");
         console.log(value1)
 
 
+
         <!--$("#Label_").append(r1[i].fields['label']+"&nbsp&nbsp&nbsp&nbsp&nbsp"+ r1[i].pk + "<br>")-->
         <!--console.log(r1[i].fields['label'] + "  ")-->
-
             <!--id=r1[i].pk-->
             <!--name=r1[i].fields['label']-->
             <!--value=r1[i].fields['label']-->
-
             <!--input = jQuery('<input type="text" id="id"  value="value" >');-->
-
-
-
              <!--jQuery('#labelForm').append(input);-->
              <!--jQuery('#labelForm').append("<br>")-->
              <!--var bla = $('#id').val();-->
@@ -616,83 +706,56 @@ var element = document.createElement("input");
 
 
         <!--$("#labelinput").append(r1[0].fields['label'])-->
-
         <!--var bla = $('#labelinput').val();-->
         <!--alert(bla)-->
     <!--//Set-->
     <!--$('#labelinput').val(r1[0].fields['label']);-->
-
-
-
     <!--input = jQuery('<input name="myname" id="my1">');-->
     <!--input1 = jQuery('<input name="myname1" id="myinput" value="KKK" >');-->
-
     <!--jQuery('#labelForm').append(input);-->
     <!--jQuery('#labelForm').append(input1);-->
-
     <!--jQuery('#myinput').remove();-->
     <!--jQuery('#my1').remove();-->
 
 
 
 
-
 <!--var element = document.createElement("input");-->
-
-	<!--//Assign different attributes to the element.-->
-	<!--element.setAttribute("type", "text");-->
-	<!--element.setAttribute("value", r1[3].fields['label']);-->
-	<!--element.setAttribute("name", r1[3].fields['label']);-->
-	<!--element.setAttribute("id",r1[1].pk );-->
+   <!--//Assign different attributes to the element.-->
+   <!--element.setAttribute("type", "text");-->
+   <!--element.setAttribute("value", r1[3].fields['label']);-->
+   <!--element.setAttribute("name", r1[3].fields['label']);-->
+   <!--element.setAttribute("id",r1[1].pk );-->
 
 
 <!--var element1 = document.createElement("input");-->
 
-	<!--//Assign different attributes to the element.-->
-	<!--element1.setAttribute("type", "text");-->
-	<!--element1.setAttribute("value", "Saurabh");-->
-	<!--element1.setAttribute("name", "name1");-->
-	<!--element1.setAttribute("id", "My2st");-->
 
-
+   <!--//Assign different attributes to the element.-->
+   <!--element1.setAttribute("type", "text");-->
+   <!--element1.setAttribute("value", "Saurabh");-->
+   <!--element1.setAttribute("name", "name1");-->
+   <!--element1.setAttribute("id", "My2st");-->
 
 <!--$("#labelForm").append(element)-->
   <!--jQuery('#My2st').append(element);-->
-
 <!--$("#labelForm").append(element1)-->
   <!--jQuery('#My2st').append(element1);-->
-
-
-
-
-
-
 
 
   <!--var r = document.createElement('span');-->
 <!--var y = document.createElement("INPUT");-->
 <!--y.setAttribute("type", "text");-->
 <!--y.setAttribute("placeholder", "Name");-->
-
 <!--increment();-->
 <!--y.setAttribute("Name", "textelement_" + i);-->
 <!--r.appendChild(y);-->
 <!--r.setAttribute("id", "id_" + i);-->
 <!--document.getElementById("labelForm").appendChild(r);-->
-
-
-
-
-
-
     });
   });
 });
 </script>
-
-
-
-
 
 
 </div>

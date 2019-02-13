@@ -394,7 +394,37 @@ def show_pin_notes(request):
                }
     return render(request, 'users/base.html', context=context)
 
+from rest_framework.generics import ListAPIView
+from .serializers import NoteSerializer
 
+class NotesListAPIView(ListAPIView):
+    # queryset = Notes.objects.all()
+    # print(queryset)
+    serializer_class = NoteSerializer
+
+    def get_queryset(self):
+
+        queryset=Notes.objects.all()
+
+        title=self.request.GET.get('title')
+        description=self.request.GET.get('description')
+
+        print(title,'=======>name')
+        print(description,'=======>description')
+
+        # if title is not None or description is not None:
+        #     queryset=queryset.filter(title__icontains=title) | queryset.filter(description__icontains=description)
+
+        if title is not None :
+            queryset=queryset.filter(title__icontains=title)
+
+            print(queryset,'       ======>')
+        return queryset
+        # if title is not None:
+        #
+        #     queryset=queryset.filter(title__icontains=title)
+        #     print(queryset,'==========>qs')
+        # return queryset
 # class reminder_save(View):
 #
 #     def post(self,request,*args,**kwargs):

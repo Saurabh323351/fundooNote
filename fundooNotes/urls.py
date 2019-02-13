@@ -62,16 +62,23 @@ urlpatterns = [
 
 # --------------- Labels-------------------------------------------------------
     path('create_label/', label_views.create_label, name='create_label'),
+    path('edit_label/', label_views.edit_label, name='edit_label'),
     path('update_label/<int:pk>/', label_views.update_label, name='update_label'),
 
     path('lable/<int:pk>/', label_views.note_lable, name='note_lable'),
     path('lable_note/<int:pk>/', label_views.note_lable_note, name='note_lable_note'),
     path('delete_label/<int:pk>/', label_views.delete_label, name='delete_label'),  # just removes from Note
+    path('delete_label_from_db/', label_views.delete_label_from_db, name='delete_label_from_db'),  # Now this will remove label from database
+
+
 
     path('get_labels/', label_views.get_labels, name='get_labels'),
     path('get_label_notes/<int:id>/', label_views.get_label_notes, name='get_label_notes'),
 
     path('get_labels1/', label_views.get_labels1, name='get_labels1'),
+
+
+    path('searching/', views.NotesListAPIView.as_view(),name='NotesListAPIView')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
