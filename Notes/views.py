@@ -121,7 +121,8 @@ def show_notes(request):
     context = {'notes_obj': notes_obj,
                'pin_notes': pin_notes,
                 # 'labels_object':labels_object
-               'map_label_obj':map_label_obj
+               'map_label_obj':map_label_obj,
+
                }
     return render(request, 'users/base.html', context=context)
 
@@ -402,29 +403,82 @@ class NotesListAPIView(ListAPIView):
     # print(queryset)
     serializer_class = NoteSerializer
 
-    def get_queryset(self):
+    # def get_queryset(self):
+    #
+    #     print('HIIIIIIIIIIIIIIILLLLLLLLLLL')
+    #     queryset=Notes.objects.all()
+    #
+    #     title=self.request.GET.get('title')
+    #     description=self.request.GET.get('description')
+    #
+    #     print(title,'=======>name')
+    #     print(description,'=======>description')
+    #
+    #     # if title is not None or description is not None:
+    #     #     queryset=queryset.filter(title__icontains=title) | queryset.filter(description__icontains=description)
+    #
+    #     if title is not None :
+    #
+    #         queryset=queryset.filter(title__icontains=title)
+    #
+    #         # queryset=NoteSerializer(queryset,many=True)
+    #         # print(queryset.data,'       ======>queryset.data')
+    #         #
+    #         #
+    #         # return JsonResponse(queryset.data,safe=False)
+    #         # return HttpResponse('users/base.html', {'queryset': queryset})
+    #         # print(queryset,'=====================>Queryset')
+    #
+    #
+    #     return queryset
+    #     # if title is not None:
+    #     #
+    #     #     queryset=queryset.filter(title__icontains=title)
+    #     #     print(queryset,'==========>qs')
+    #     # return queryset
 
-        queryset=Notes.objects.all()
 
-        title=self.request.GET.get('title')
-        description=self.request.GET.get('description')
 
-        print(title,'=======>name')
-        print(description,'=======>description')
+
+
+def search(request):
+
+    if request.method=='GET':
+        print('HIIIIIIIIIIIIIIILLLLLLLLLLL')
+        queryset = Notes.objects.all()
+
+        title = request.GET.get('title')
+        description = request.GET.get('description')
+
+        print(title, '=======>name')
+        print(description, '=======>description')
 
         # if title is not None or description is not None:
         #     queryset=queryset.filter(title__icontains=title) | queryset.filter(description__icontains=description)
 
-        if title is not None :
-            queryset=queryset.filter(title__icontains=title)
+        if title is not None:
+            queryset = queryset.filter(title__icontains=title)
 
-            print(queryset,'       ======>')
-        return queryset
+            # queryset=NoteSerializer(queryset,many=True)
+            # print(queryset.data,'       ======>queryset.data')
+            #
+            #
+            # return JsonResponse(queryset.data,safe=False)
+            # return HttpResponse('users/base.html', {'queryset': queryset})
+            print(queryset,'=====================>Queryset')
+
+            return render(request, 'users/base.html', {'notes_obj': queryset})
+
+
         # if title is not None:
         #
         #     queryset=queryset.filter(title__icontains=title)
         #     print(queryset,'==========>qs')
         # return queryset
+    else:
+        print('Yaha HU mai')
+        return render(request,'users/base.html',{'queryset':{}})
+
 # class reminder_save(View):
 #
 #     def post(self,request,*args,**kwargs):

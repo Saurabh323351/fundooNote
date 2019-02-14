@@ -78,7 +78,8 @@ urlpatterns = [
     path('get_labels1/', label_views.get_labels1, name='get_labels1'),
 
 
-    path('searching/', views.NotesListAPIView.as_view(),name='NotesListAPIView')
+    path('searching/', views.NotesListAPIView.as_view(),name='NotesListAPIView'),
+    path('search/', views.search,name='search')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

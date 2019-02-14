@@ -158,8 +158,8 @@
 
 
 
-        <!---------------------Trying to render search notes---------------------------------------------->
-<script>
+     <script>
+     var searchValue=""
 var title=""
 function click1(element){
 
@@ -170,28 +170,57 @@ function click1(element){
     }
 
 
+<!--$(document).ready(function(){-->
+  <!--$("#searchicon2").click(function(){-->
+
+<!--alert("hi i am here")-->
+ <!--&lt;!&ndash;var id="#"+id&ndash;&gt;-->
+   <!--var value1=jQuery("#inputlg").val();-->
+   <!--alert(value1,+"  value1")-->
+    <!--$.post("http://127.0.0.1:8000/searching/",-->
+    <!--{-->
+      <!--title:value1,-->
+      <!--csrfmiddlewaretoken: '{{ csrf_token }}'-->
+
+
+    <!--},-->
+    <!--function(data,status){-->
+      <!--console.log("Data: " + data + "\nStatus: " + status);-->
+            <!--console.log(data)-->
+    <!--});-->
+  <!--});-->
+<!--});-->
+
+
+
+
+
 $(document).ready(function(){
   $("#searchicon1").click(function(){
 
-alert("hi i am here")
- <!--var id="#"+id-->
-   var value1=jQuery("#inputlg").val();
-   alert(value1,+"  value1")
-    $.post("http://127.0.0.1:8000/searching/",
-    {
-      title:value1
+   var value1=jQuery("#inputlg").val()
+   console.log(value1)
 
+    $.get("http://127.0.0.1:8000/search/?title="+value1, function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
 
-    },
-    function(data,status){
-      console.log("Data: " + data + "\nStatus: " + status);
-            console.log(data)
+      console.log(data)
+      searchValue=data
     });
   });
 });
 
+
+
 </script>
-    <!---------------------Trying to render search notes---------------------------------------------->
+
+    <div id="renderSearchResult" >
+
+
+    </div>
+
+
+    -------------------Trying to render search notes--------------------------------------------
 
 
 
@@ -376,6 +405,10 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
 {% endfor %}
 
 
+
+    <!--{% for q in queryset %}-->
+    <!--{{q}}-->
+    <!--{% endfor %}-->
 
 
     <!--container div for Pinned Notes-->
