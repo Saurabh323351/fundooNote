@@ -1,0 +1,96 @@
+{% if results %}
+	  {% for post in results %}
+
+
+
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id">
+  <div class="thumbnail" id="color" style="background-color:{{post.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;">
+    <div class="caption">
+        <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
+        {{ post.title }}</a></h2>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+      </div>
+    <p>{{ post.description }}</p>
+
+            {% for la in map_label_obj %}
+
+            {% if la.note_id == post %}
+
+    <a href="{% url 'delete_label' la.pk %}"><span class="badge">{{la.label_id}}</span></a>
+            {% endif %}
+            {% endfor %}
+    <div class="caption card-footer">
+      <ul class="list-inline">
+          <medium><a href="{% url 'note_delete' post.pk %}" data-toggle="modal" data-target="#deleteModal">
+             <span class="glyphicon glyphicon-trash"></span>
+              <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_Uc">-->
+              <!--<path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>-->
+              <!--<path d="M9 8h2v9H9zm4 0h2v9h-2z"></path></svg>-->
+          </a></medium>
+              <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+
+          <medium><a href="{% url 'archive' post.pk %}" >
+              &nbsp&nbsp<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive2">
+                           <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
+          </svg></a>
+
+          </medium>
+          <medium>&nbsp<a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+              <div id="lableModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium>&nbsp<a href="{% url 'note_reminder' post.pk %}">
+             <span  class="glyphicon glyphicon-bell"></span>
+          </a> </medium>
+
+          <medium>&nbsp<a href="#" >
+
+              <span role="button" id="Colab1" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
+
+      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+    margin-bottom: -5px;
+">
+                              <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
+    </svg></abbr></span>
+          </a></medium>
+          <medium>&nbsp<a href="{%url 'copy_note' post.pk %}" >Copy</a></medium>
+
+          <medium>&nbsp <a href="{% url 'pin' post.pk %}">
+              <span  class="glyphicon glyphicon-pushpin"></span>
+
+
+          </a>
+              </medium>
+        {# <li><i class="fa fa-user"></i></li> #}
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+{% endfor %}
+
+
+{% else %}
+	<div class="note">
+		<b>No matching results</b>
+	</div>
+{% endif %}

@@ -156,10 +156,8 @@
         </nav>
     </div>
 
+<script>
 
-
-     <script>
-     var searchValue=""
 var title=""
 function click1(element){
 
@@ -193,7 +191,7 @@ function click1(element){
 
 
 
-
+<!--var searchValue=""-->
 
 $(document).ready(function(){
   $("#searchicon1").click(function(){
@@ -201,33 +199,56 @@ $(document).ready(function(){
    var value1=jQuery("#inputlg").val()
    console.log(value1)
 
-    $.get("http://127.0.0.1:8000/search/?title="+value1, function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
+    $.get("http://127.0.0.1:8000/searching/?title="+value1, function(data, status){
+      <!--alert("Data: " + data + "\nStatus: " + status);-->
 
       console.log(data)
-      searchValue=data
-    });
-  });
+
+
+
+<!--get closing bracket-->
+     });
+
+
+
+<!--Click closing bracket-->
+ });
+
+
+<!-- last wala bracket-->
 });
+
+
+
+
+$( document ).ready( function() {
+    $('#inputlg').keyup( function() {
+        search_box_value = $( '#inputlg' ).val();
+        $( '#renderSearchResult' ).html( '&nbsp;' ).load( '{% url 'search' %}?title=' + search_box_value );
+    });
+});
+
+
 
 
 
 </script>
 
+    <div class="container" style="background-color: white; margin-top:86px;">
     <div id="renderSearchResult" >
 
 
     </div>
 
-
-    -------------------Trying to render search notes--------------------------------------------
-
-
+    </div>
+    <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Trying to render search notes&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
 
 
 
-<div class="container" style="background-color: white;height: 601px;">
+
+
+<div class="container" style="background-color: white;height: 601px; margin-top: -14px;">
 <div class="panel panel-default" style="
 width: 606px; margin-left: 277px;margin-top: 91px;">
 <div class="panel-body" style="
@@ -514,6 +535,10 @@ width: 606px;box-shadow: inset 1px 1px 0px 0px rgba(0,0,0,.1), inset 0 -1px 0 rg
 
 
 
+
+
+
+
 <!--container div -->
 </div>
 
@@ -789,6 +814,8 @@ var element = document.createElement("input");
   });
 });
 </script>
+
+
 
 
 </div>
