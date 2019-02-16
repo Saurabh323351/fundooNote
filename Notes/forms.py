@@ -46,6 +46,11 @@ class reminder_form(forms.ModelForm):
         fields = ['reminder']
 
 
+class colaborator_form(forms.ModelForm):
+    class Meta:
+        model=Notes
+        fields=['collaborate']
+
 # class MyForm(Form):
 #     my_field = DateField(widget=AdminDateWidget)
 

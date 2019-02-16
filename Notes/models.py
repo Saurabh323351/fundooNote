@@ -34,7 +34,6 @@ class Notes(models.Model):
     image = models.ImageField(default=None, null=True)
     trash = models.BooleanField(default=False)
     is_pinned = models.BooleanField(blank=True, null=True, default=False)
-    label = models.CharField(max_length=50)
     collaborate = models.ManyToManyField(User, blank=True, related_name='collaborated_user')
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner', null=True, blank=True)

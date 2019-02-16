@@ -68,8 +68,18 @@ def create_note(request):
             print(description, ' --> description')
             print(color, ' --> color')
 
-            f = form.save()
-            print(f.is_pinned, '------>')
+            is_exists= Notes.objects.filter(title=title,description=description).exists()
+            if is_exists is not True:
+                f = form.save(commit=False)
+
+                print(f,'======>f')
+                f.user=request.user
+                f.is_pinned=is_pinned
+                f.title=title
+                f.description=description
+                f.color=color
+                f.save()
+                # print(f.is_pinned, '------>')
 
         return redirect('show_notes')
     else:
@@ -95,7 +105,11 @@ def show_notes(request):
     # according to note '-created_time' but in descending order
 
     # notes_obj = Notes.objects.all().order_by('-created_time')
-    notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False).order_by('-created_time')
+    user=request.user
+    print(type(user))
+    # user='Saurabh_Singh'
+    print(user,'=========>user')
+    notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False,user=user).order_by('-created_time')
     print(notes_obj)
     pin_notes = Notes.objects.filter(is_pinned=True, trash=False).order_by('-created_time')
     print(pin_notes, '-->', 'pin_notes')
@@ -510,6 +524,23 @@ def search(request):
 #     fields = ['collaborate']
 #     template_name = 'note_collaborate.html'
 
+from .forms import colaborator_form
+
+def note_collaborator(request):
+    print("Hey i am inside")
+
+    if request.method=='POST':
+        form=colaborator_form(request.POST)
+        print(form,'------------>form')
+
+        if form.is_valid():
+            form_obj=form.save()
+            print(form_obj,'======>form_obj')
+            return redirect('home')
+
+    else:
+        form=colaborator_form()
+        return render(request,'Notes/colaborator.html',{'form':form})
 
 # -----pagination------------------
 

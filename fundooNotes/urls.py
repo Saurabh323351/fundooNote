@@ -79,7 +79,9 @@ urlpatterns = [
 
 
     path('searching/', views.NotesListAPIView.as_view(),name='NotesListAPIView'),
-    path('search/', views.search,name='search')
+    path('search/', views.search,name='search'),
+
+    path('note_collaborator/',views.note_collaborator,name='note_collaborator')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
