@@ -1,0 +1,969 @@
+<!doctype html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fundooNotes</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+
+    <link href="profile.css" rel="stylesheet" type="text/css"/>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'main1.js' %}"></script>
+
+    <!-- Custom styles for this template -->
+    <!--<link href="starter-template.css" rel="stylesheet">-->
+
+
+    <!--<script>-->
+  <!--window.location.href = "login/";-->
+    <!--</script>-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <!--$.toaster({ settings :-->
+            <!--{-->
+                <!--toast :-->
+                <!--{-->
+                    <!--fade : { in : 'fast', out : 'slow' },-->
+            <!---->
+                    <!--display : function ($toast)-->
+                    <!--{-->
+                        <!--return $toast.fadeIn(settings.toast.fade.in);-->
+                    <!--},-->
+            <!---->
+                    <!--remove : function ($toast, callback)-->
+                    <!--{-->
+                        <!--return $toast.animate(-->
+                        <!--{-->
+                            <!--opacity: '0',-->
+                            <!--height: '0px'-->
+                        <!--},-->
+                        <!--{-->
+                            <!--duration: settings.toast.fade.out,-->
+                            <!--complete: callback-->
+                        <!--});-->
+                    <!--}-->
+                <!--}-->
+            <!--}});-->
+            <!--alert('1');-->
+            <!--$.toaster({ priority : 'success', title : 'Title', message : 'Your message here'});-->
+            <!--$.toaster({ priority : 'info', title : 'Title', message : 'Your message here'});-->
+            <!--$.toaster({ priority : 'warning', title : 'Title', message : 'Your message here'});-->
+            <!--$.toaster({ priority : 'danger', title : 'Title', message : 'Your message here'});-->
+        });
+    </script>
+    <script type="text/javascript" src="{% static '/js/jquery.toaster.js' %}"></script>
+</head>
+<body>
+<div id="wrapper">
+
+     <nav id="navigationbar" class="navbar navbar navbar-fixed-top" role="navigation">
+   <div class="container-fluid">
+      <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                 <span class="sr-only">Toggle navigation</span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+             </button>
+               <div  class="navbar-brand" style="width: 287px;">
+                   <a id="menu-toggle" href="#" class="glyphicon glyphicon-align-justify btn-menu toggle">
+                       <a id="fundoo-img" class="navbar-brand" href="#">
+                  <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" width="40" height="40" class="d-inline-block align-top" alt="" align="left" hspace="35">
+                    </a>
+
+                       <i class="fa fa-bars"></i>
+                   </a>
+                   <a style="margin-left: -36px;color: #0f0f0f;font-size: 21px;" href="{% url 'home' %}">fundooNotes</a>
+
+
+                  </div>
+      </div>
+
+
+
+           <form class="navbar-form navbar-left" style="height: 0px;">
+                 <div class="form-group" style="height: 0px;">
+
+                         <input class="form-control input-lg" id="inputlg" type="text" placeholder="Search" aria-label="Search" autocomplete="off">
+
+
+
+                 </div>
+                 <button type="button" class="btn "><span class="glyphicon glyphicon-repeat"></span> </button>
+                 <button type="button" id="grid_btn" class="btn "><span class="glyphicon glyphicon-th-large"></span> </button>
+                 <button type="button" class="btn " id="list_btn"><span class="glyphicon glyphicon-list"></span> </button>
+                 <!--<button type="button" class="btn "style="margin-left: 24px;"><span class="glyphicon glyphicon-th"></span> </button>-->
+                 <!--<button type="button" class="btn "><span class="glyphicon glyphicon-bell"></span> </button>-->
+               <ul>
+                   <li><img src="{{ user.profile.image.url }}"  id="profileImage">
+
+                       <ul >
+
+                           <li >
+   <div class="panel panel-default" style="width: 341px; height: 189px;margin-left:800px ;display:none;" id="profilePanel">
+  <div class="panel-body " style="width: 341px; height: 189px;">
+
+
+  <a href="{% url 'profile' %}"><img src="{{ user.profile.image.url }}"  id="profileImage1" style="float:left;"></a>
+
+ <div style="float:right;">
+<h2 class="account-heading"  >{{user.username}}</h2>
+<h5>{{user.email}} </h5></div><br><br><br><br><br>
+
+ <div class="sep" id="closeProfileCard">
+<hr class="seprator" style="border-top: 2px solid #ddd;"><div class="sepText" >
+
+<a href="{% url 'logout' %}" style="margin-left: 256px;"><h3 style="display:inline; margin-left: -21px;">Logout</h3></a>
+
+
+ </div>
+ </div>
+  </div>
+</div> </li>
+
+
+</ul>
+
+
+
+
+
+
+                   </li>
+
+                </ul>
+
+           </form>
+
+
+
+      <div id="navbar" class="collapse navbar-collapse" style="background-color: white;">
+         <ul class="nav navbar-nav">
+
+
+         </ul>
+      </div><!--/.nav-collapse -->
+   </div>
+</nav>
+
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <nav id="spy">
+            <ul class="sidebar-nav nav">
+
+                <li>
+                    <div style="display:inline;margin-left: -9px;margin-top: -40px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="gb_Uc" style="display:inline"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path></svg>
+                        </div>
+<a href="{% url 'show_notes' %}" style="margin-left: 5px;margin-top: -41px;">
+            <span class="fa fa-anchor solo"><b>Notes</b></span>
+                    </a>
+                </li>
+                <li>
+
+<!--<a href="#Notes"><span class="fa fa-home solo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="gb_Uc"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path></svg><b style="margin-left:6px; ">Notes</b></span></a>-->
+<!--</li>-->
+
+
+                <li>
+                    <a href="#Reminders">
+                        <span  class="glyphicon glyphicon-bell"></span>
+                        <span class="fa fa-anchor solo"><b>Remainders</b></span>
+                    </a>
+
+                <div class="sep" >
+                    <hr class="seprator" style="border-top: 2px solid #ddd;"><div class="sepText" ></div>
+                    </div>
+
+                </li>
+                <li>
+
+                       <a href="{% url 'get_labels' %}"><B>LABELS</B></a>
+                        {%for labels in labels%}
+
+                        <div id="Labels" ><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_Uc" style="margin-bottom: -34px;">
+                        <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16zM16 17H5V7h11l3.55 5L16 17z"></path>
+                        </svg></span><a href="{% url 'get_label_notes' labels.pk %}" >{{labels.label}}</a></div>
+                        {%endfor%}
+                    <a href="#"  data-toggle="modal" data-target="#mylabelModal" id="label-modal">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="fa fa-anchor solo"><b style="margin-left: -4px;">Edit labels</b></span></a>
+                    <div class="sep" >
+                    <hr class="seprator" style="border-top: 2px solid #ddd;"><div class="sepText" ></div>
+                    </div>
+
+                </li>
+                <li>
+                    <a href="{% url 'show_archive_notes' %}">
+                        <span class="glyphicon glyphicon-save"></span>
+                        <span class="fa fa-anchor solo"><b>Archive</b></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'show_trash_notes' %}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        <span class="fa fa-anchor solo"><b>Trash</b></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+<script>
+
+var title=""
+function click1(element){
+
+    console.log(element.id)
+    console.log(element.value)
+
+    title=element.value
+    }
+
+
+<!--$(document).ready(function(){-->
+  <!--$("#searchicon2").click(function(){-->
+
+<!--alert("hi i am here")-->
+ <!--&lt;!&ndash;var id="#"+id&ndash;&gt;-->
+   <!--var value1=jQuery("#inputlg").val();-->
+   <!--alert(value1,+"  value1")-->
+    <!--$.post("http://127.0.0.1:8000/searching/",-->
+    <!--{-->
+      <!--title:value1,-->
+      <!--csrfmiddlewaretoken: '{{ csrf_token }}'-->
+
+
+    <!--},-->
+    <!--function(data,status){-->
+      <!--console.log("Data: " + data + "\nStatus: " + status);-->
+            <!--console.log(data)-->
+    <!--});-->
+  <!--});-->
+<!--});-->
+
+
+
+<!--var searchValue=""-->
+
+$(document).ready(function(){
+  $("#searchicon1").click(function(){
+
+   var value1=jQuery("#inputlg").val()
+   console.log(value1)
+
+    $.get("http://127.0.0.1:8000/searching/?title="+value1, function(data, status){
+      <!--alert("Data: " + data + "\nStatus: " + status);-->
+
+      console.log(data)
+
+
+
+<!--get closing bracket-->
+     });
+
+
+
+<!--Click closing bracket-->
+ });
+
+
+<!-- last wala bracket-->
+});
+
+
+<!--Below jquery code i am using for search -->
+
+$( document ).ready( function() {
+    $('#inputlg').keyup( function() {
+        search_box_value = $( '#inputlg' ).val();
+        $( '#renderSearchResult' ).html( '&nbsp;' ).load( '{% url 'search' %}?title=' + search_box_value );
+    });
+});
+
+
+
+
+
+</script>
+
+
+
+
+  <script>
+$(document).ready(function(){
+  $("#inputlg").click(function(){
+    $("#hide_this").hide();
+    $("#show").hide();
+  });
+
+  <!--actually i have not used this show function yet -->
+  $("#show").click(function(){
+    $("#hide_this").show();
+    $("#show").hide();
+});
+
+
+$("#create_note").click(function(){
+
+$("#hide_this").hide();
+$("#show").show();
+
+});
+
+
+$("#profileImage").click(function(){
+
+$("#profilePanel").show();
+
+});
+
+$("#closeProfileCard").click(function(){
+
+$("#profilePanel").hide();
+
+});
+
+
+
+
+
+});
+</script>
+
+
+    <div class="container" style="background-color: white; margin-top:86px;">
+    <div id="renderSearchResult" >
+
+
+    </div>
+
+    </div>
+    <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Trying to render search notes&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+
+
+
+
+
+
+<div class="container" style="background-color: white;height: 601px; margin-top: -14px;">
+
+
+
+ <!--I used  below panel for hide and show of create note card-->
+    <div class="panel panel-default" style="width: 606px; margin-left: 277px;margin-top: 15px;" id="show">
+    <div class="panel-body" style="box-shadow: 3px 3px 8px hsl(0, 0%, 70%);">Take a note ..</div>
+  </div>
+
+
+      <!--I used  below panel  to create note card-->
+
+<div class="panel panel-default" id="hide_this" style="width: 606px; margin-left: 277px;margin-top: 91px; margin-top:30px;display: none;">
+<div class="panel-body"  style="
+width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
+<!--<form action="{% url 'create_note' %}" method="post" name="frmPanel">-->
+<!--<input type="text" name="frmText" placeholder="Title .." style="-->
+<!--border-width: 1px;-->
+<!--border-style: inset;-->
+<!--border-color: red;-->
+<!--height: 35px;-->
+<!--font-size: 21px;"/><br><br>-->
+<!--<textarea rows="4" cols="50" placeholder="Take a note ..">-->
+<!--</textarea><br>-->
+<!--<input type="button" value="submit" name="frmSubmit" style="margin-left: 315px;" />-->
+
+<!--</form>-->
+<form action="{% url 'create_note' %}" method="post" id="ajax_create">
+     {% csrf_token %}
+    <input name="title" type="text" value="{{note.title}}" placeholder="Title .." id="frmTitle" autocomplete="off"><br>
+    <textarea name="description" cols="70" rows="5" value="{{note.description}}" placeholder="Take a note .." id="frmDescription" ></textarea><br>
+
+
+                    Is Pinned
+                    Yes <input name="is_pinned" type="radio" value=True >
+                    No <input name="is_pinned" type="radio" value=False ><br><br>
+
+                         <abbr title="choose Colors"><select name="color" style="width: 55px;">
+                            <option value="white" style="background-color:white;"></option>
+                            <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
+                            <option value="#FFD"  style="background-color:#FFD;"></option>
+
+                            <option value="lightsalmon" style="background-color:lightsalmon;"></option>
+                            <option value="salmon" style="background-color:salmon;"></option>
+                            <option value="darksalmon" style="background-color:darksalmon;"></option>
+                            <option value="lawngreen" style="background-color:lawngreen;"></option>
+                            <option value="lightgreen" style="background-color:lightgreen;"></option>
+                            <option value="lightcyan" style="background-color:lightcyan;">	</option>
+                            <option value="lightskyblue	" style="background-color:lightskyblue;"></option>
+                            <option value="rgb(215, 174, 251)" style="background-color:rgb(215, 174, 251);"></option>
+                            <option value="rgb(174, 203, 250)" style="background-color:rgb(174, 203, 250);"></option>
+                            <option value="rgb(253, 207, 232)" style="background-color:rgb(253, 207, 232);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+
+                        </select></abbr>
+                    <abbr title="Remind me" style="border-bottom:0px">
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="reminder">
+                                <path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>
+                                <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>
+                    </svg></abbr>
+
+    <span role="button" id="Colab" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
+
+      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+    margin-bottom: -5px;
+">
+                              <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
+    </svg></abbr></span>
+
+    <!--</span>-->
+    <span>
+       <input type="file" name="imageUpload" id="imageUpload"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">
+
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
+    </svg></span>
+    </span>
+
+
+    <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive1">
+                           <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
+    </svg></span>
+
+                    <input type="submit" value="Close" onclick="myFunction" id="create_note" class="btnClose"/>
+
+</form>
+
+</div>
+
+
+</div>
+
+
+    {% if pin_notes %}
+<div class="container" id="pin">
+
+
+
+         {% if pin_notes %}
+            <h3>Pinned Notes</h3>
+        {% endif %}
+
+
+
+    {% for post1 in pin_notes %}
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id1">
+  <div class="thumbnail" id="color1" style="background-color:{{post1.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;">
+    <div class="caption">
+        <h2><a href="{% url 'note_edit' post1.pk %}" data-toggle="modal" data-target="#myModal">
+        {{ post1.title }}</a></h2>
+        <div id="myModal1" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+      </div>
+    <p>{{ post1.description }}</p>
+
+    <div class="lable_div" id="ldiv_id1">{{post1.label}}</div>
+
+    <div class="caption card-footer">
+      <ul class="list-inline">
+          <medium><a href="{% url 'note_delete' post1.pk %}" data-toggle="modal" data-target="#deleteModal">
+             <span class="glyphicon glyphicon-trash"></span>
+              <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_Uc">-->
+              <!--<path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>-->
+              <!--<path d="M9 8h2v9H9zm4 0h2v9h-2z"></path></svg>-->
+          </a></medium>
+              <div id="deleteModal1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+
+          <medium><a href="{% url 'archive' post1.pk %}" >
+              &nbsp&nbsp<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive2">
+                           <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
+          </svg></a>
+
+          </medium>
+          <medium>&nbsp<a href="{% url 'note_lable' post1.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+              <div id="lableModal1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium>&nbsp<a href="{% url 'note_reminder' post1.pk %}">
+             <span  class="glyphicon glyphicon-bell"></span>
+          </a> </medium>
+
+          <medium>&nbsp<a href="#" >
+
+              <span role="button" id="Colab2" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
+
+      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+    margin-bottom: -5px;
+">
+                              <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
+    </svg></abbr></span>
+          </a></medium>
+          <medium>&nbsp<a href="{%url 'copy_note' post1.pk %}" >Copy</a></medium>
+
+          <medium>&nbsp <a href="{% url 'pin' post1.pk %}">
+              <span  class="glyphicon glyphicon-pushpin"></span>
+
+
+          </a>
+              </medium>
+        {# <li><i class="fa fa-user"></i></li> #}
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+
+
+    <!--{% for q in queryset %}-->
+    <!--{{q}}-->
+    <!--{% endfor %}-->
+
+
+    <!--container div for Pinned Notes-->
+</div>
+{% endif %}
+
+    {% if pin_notes  %}
+        {% if notes_obj  %}
+
+            <h3>Other Notes</h3>
+        {% endif %}
+    {% endif %}
+
+
+    {% for post in notes_obj %}
+
+
+
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id">
+  <div class="thumbnail" id="color" style="background-color:{{post.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%); ">
+    <div class="caption">
+        <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
+        {{ post.title }}</a></h2>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+      </div>
+    <p>{{ post.description }}</p>
+
+            {% for la in map_label_obj %}
+
+            {% if la.note_id == post %}
+
+    <a href="{% url 'delete_label' la.pk %}"><span class="badge">{{la.label_id}}</span></a>
+            {% endif %}
+            {% endfor %}
+    <div class="caption card-footer">
+      <ul class="list-inline">
+          <medium><a href="{% url 'note_delete' post.pk %}" data-toggle="modal" data-target="#deleteModal">
+             <span class="glyphicon glyphicon-trash"></span>
+              <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_Uc">-->
+              <!--<path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>-->
+              <!--<path d="M9 8h2v9H9zm4 0h2v9h-2z"></path></svg>-->
+          </a></medium>
+              <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+
+          <medium><a href="{% url 'archive' post.pk %}" >
+              &nbsp&nbsp<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive2">
+                           <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
+          </svg></a>
+
+          </medium>
+          <medium>&nbsp<a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
+              <div id="lableModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+              </div>
+            </div>
+          <medium>&nbsp<a href="{% url 'note_reminder' post.pk %}">
+             <span  class="glyphicon glyphicon-bell"></span>
+          </a> </medium>
+
+          <medium>&nbsp<a href="{% url 'note_collaborator' post.pk %}" >
+
+              <span role="button" id="Colab1" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
+
+      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+    margin-bottom: -5px;
+">
+                              <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
+    </svg></abbr></span>
+          </a></medium>
+          <medium>&nbsp<a href="{%url 'copy_note' post.pk %}" >Copy</a></medium>
+
+          <medium>&nbsp <a href="{% url 'pin' post.pk %}">
+              <span  class="glyphicon glyphicon-pushpin"></span>
+
+
+          </a>
+              </medium>
+        {# <li><i class="fa fa-user"></i></li> #}
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+<!--container div -->
+</div>
+
+<div class="modal fade" id="mylabelModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+
+            <button id="btn4" value="jj"><b>Show Labels</b></button>
+
+
+                         <div id="Label_">
+
+                            <form action="" id="labelForm" method="post">
+                                <!--<input type="text" id="labelinput" name="l" value="hardcoded" onclick="">-->
+                                <input type="button" id="btn10" value="Edit Done">
+                                <input type="button" id="btn11" value="Delete">
+            <input type="text" name="CreateLabel" value="" placeholder="enter label name"  onclick="clic(this)">
+                                <input  type="button"  id="btnCreate" value="Create" >
+                            </form>
+                        </div>
+
+
+
+
+
+                <form method="GET" action="">
+                <!--<input type="button" name="My button" value="Click" onClick="clic(this);">-->
+                <input type="text" value="Hii" name="hello" id="mai hu id" onclick="clic(this);" >
+                <!--<input type="button" name="My button1" value="Click1" onClick="clic(this);">-->
+                </form>
+
+<script language="JavaScript">
+
+var id="";
+var name="";
+var value="";
+console.log(id+" "+"id")
+function clic(element)
+{
+   console.log("Clicked on " + element);
+   console.log("Clicked on " + element.id);
+  console.log("Clicked on " + element.name);
+   console.log("Clicked on " + element.value);
+
+id=element.id;
+name=element.name;
+value=element.value;
+console.log(id+" "+"id")
+}
+
+
+$(document).ready(function(){
+  $("#btnCreate").click(function(){
+
+ <!--var id="#"+id-->
+   <!--var value1=jQuery(id).val();-->
+   <!--console.log(value1,+"  value1")-->
+    $.post("http://127.0.0.1:8000/create_label/",
+    {
+      name: name,
+      id: id,
+      value:value
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+    });
+  });
+});
+
+
+
+
+$(document).ready(function(){
+  $("#btn10").click(function(){
+
+ var id="#"+id
+   var value1=jQuery(id).val();
+   console.log(value1,+"  value1")
+    $.post("http://127.0.0.1:8000/edit_label/",
+    {
+      name: name,
+      id: id,
+      value:value
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+    });
+  });
+});
+
+
+
+$(document).ready(function(){
+  $("#btn11").click(function(){
+
+ id="#"+id
+   var value1=jQuery(id).val();
+   alert(value1,+"  value1----->");
+
+
+    $.post("http://127.0.0.1:8000/delete_label_from_db/",
+    {
+      name: name,
+
+      value:value
+    },
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            console.log(data)
+
+            jQuery(id).remove();
+
+            <!--r1=JSON.parse(data.message)-->
+    });
+
+
+
+  });
+});
+
+
+</script>
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+   <!--<script>-->
+<!--$(document).ready(function(){-->
+  <!--$("#btn4").click(function(){-->
+    <!--$.post("http://127.0.0.1:8000/get_labels1/",-->
+    <!--{-->
+      <!--name: "SaurabhRajat",-->
+      <!--city: "Duckburg"-->
+    <!--},-->
+    <!--function(data,status){-->
+      <!--alert("Data: " + data + "\nStatus: " + status);-->
+            <!--console.log(data)-->
+    <!--});-->
+  <!--});-->
+<!--});-->
+<!--</script>-->
+
+
+<!--<script>-->
+<!--$(document).ready(function(){-->
+  <!--$("#btn6").click(function(){-->
+    <!--$.getJSON("http://127.0.0.1:8000/get_labels1/", function(result){-->
+      <!--$.each(result, function(i, field){-->
+        <!--$("div").append(field + " ");-->
+      <!--});-->
+    <!--});-->
+  <!--});-->
+<!--});-->
+<!--</script>-->
+
+<script>
+$(document).ready(function(){
+  $("#btn4").click(function(){
+    $.get("http://127.0.0.1:8000/get_labels1/", function(data, status){
+      r1=JSON.parse(data.message)
+      //console.log('---------------')
+      //console.log(r1[1].fields['label'])
+      //console.log(r1[1].pk)
+      //console.log('----------------')
+
+      for(i=0;i<r1.length;i++){
+var element = document.createElement("input");
+
+
+   //Assign different attributes to the element.
+   element.setAttribute("type", "text");
+   element.setAttribute("value", r1[i].fields['label']);
+   element.setAttribute("name", r1[i].fields['label']);
+   element.setAttribute("id", "id"+r1[i].pk );
+   element.setAttribute("onclick", "clic(this)" );
+
+     var id="#"+"id"+r1[i].pk // important
+     console.log(id)
+    $("#labelForm").append(element)
+        jQuery('#labelForm').append("<br>")
+
+    <!--console.log("text" + i  )-->
+  <!--var value=jQuery("#id112").val();-->
+        <!--console.log(value)-->
+
+  var value1=jQuery(id).val();
+        console.log(value1)
+
+
+
+        <!--$("#Label_").append(r1[i].fields['label']+"&nbsp&nbsp&nbsp&nbsp&nbsp"+ r1[i].pk + "<br>")-->
+        <!--console.log(r1[i].fields['label'] + "  ")-->
+            <!--id=r1[i].pk-->
+            <!--name=r1[i].fields['label']-->
+            <!--value=r1[i].fields['label']-->
+            <!--input = jQuery('<input type="text" id="id"  value="value" >');-->
+             <!--jQuery('#labelForm').append(input);-->
+             <!--jQuery('#labelForm').append("<br>")-->
+             <!--var bla = $('#id').val();-->
+              <!--$('#id').val(r1[i].fields['label']);-->
+        }
+
+
+
+        <!--$("#labelinput").append(r1[0].fields['label'])-->
+        <!--var bla = $('#labelinput').val();-->
+        <!--alert(bla)-->
+    <!--//Set-->
+    <!--$('#labelinput').val(r1[0].fields['label']);-->
+    <!--input = jQuery('<input name="myname" id="my1">');-->
+    <!--input1 = jQuery('<input name="myname1" id="myinput" value="KKK" >');-->
+    <!--jQuery('#labelForm').append(input);-->
+    <!--jQuery('#labelForm').append(input1);-->
+    <!--jQuery('#myinput').remove();-->
+    <!--jQuery('#my1').remove();-->
+
+
+
+
+<!--var element = document.createElement("input");-->
+   <!--//Assign different attributes to the element.-->
+   <!--element.setAttribute("type", "text");-->
+   <!--element.setAttribute("value", r1[3].fields['label']);-->
+   <!--element.setAttribute("name", r1[3].fields['label']);-->
+   <!--element.setAttribute("id",r1[1].pk );-->
+
+
+<!--var element1 = document.createElement("input");-->
+
+
+   <!--//Assign different attributes to the element.-->
+   <!--element1.setAttribute("type", "text");-->
+   <!--element1.setAttribute("value", "Saurabh");-->
+   <!--element1.setAttribute("name", "name1");-->
+   <!--element1.setAttribute("id", "My2st");-->
+
+<!--$("#labelForm").append(element)-->
+  <!--jQuery('#My2st').append(element);-->
+<!--$("#labelForm").append(element1)-->
+  <!--jQuery('#My2st').append(element1);-->
+
+
+  <!--var r = document.createElement('span');-->
+<!--var y = document.createElement("INPUT");-->
+<!--y.setAttribute("type", "text");-->
+<!--y.setAttribute("placeholder", "Name");-->
+<!--increment();-->
+<!--y.setAttribute("Name", "textelement_" + i);-->
+<!--r.appendChild(y);-->
+<!--r.setAttribute("id", "id_" + i);-->
+<!--document.getElementById("labelForm").appendChild(r);-->
+    });
+  });
+});
+</script>
+
+<script>
+    $(document).ready(function(){
+
+ $("#menu-toggle").click(function() {
+//        e.preventDefault();
+//    console.log(e);
+        $("#wrapper").toggleClass("active");
+
+});
+
+});
+
+</script>
+
+
+</div>
+</body>
+</html>

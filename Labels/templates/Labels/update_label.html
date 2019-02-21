@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<form action="{% url 'update_label' 1 %}" name="frmUpdateLabel" method="post">
+    {% csrf_token %}
+    <!--{{form.as_p}}-->
+    <input type="text" name="label" id="label">
+    <input type="submit" value="create" name="submit_label">
+
+</form>
+
+                        <button id="btn4">Labels ...</button>
+                        {% for labels1 in labels1 %}
+                        <div id="Labels_edit" ><a href="{% url 'get_label_notes' labels1.pk %}" >{{labels1.label}}</a></div>
+                        {%endfor%}
+
+
+
+$(document).ready(function(){
+  $("#btn4").click(function(){
+    $.post("http://127.0.0.1:8000/get_labels1/",
+    {
+      name: "Saurabh",
+      city: "Duckburg"
+    },
+    function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+
+</body>
+</html>
+

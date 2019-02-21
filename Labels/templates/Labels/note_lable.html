@@ -1,0 +1,11 @@
+
+<html>
+<body>
+<h1>Lable Note</h1>
+<form action="{% url 'create_label' %}" method="post" id="ajax_label" >
+    {% csrf_token %}
+    label<br><input name="label" type="text" id = "linput_id" value="" >
+<input type="submit" value="Create" id ="label_id"/>
+</form>
+</body>
+</html>

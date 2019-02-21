@@ -1,0 +1,52 @@
+<html>
+<body>
+    <h1>Update Note</h1>
+    <form action="{% url 'note_update' note.id %}" method="post" name="ajax_update">{% csrf_token %}
+        Title<input name="title" type="text" value="{{note.title}}" ><br>
+        Description<input name="description" type="text" value="{{note.description}}" ><br>
+        Is Pinned <br>
+        Yes <input name="is_pinned" type="radio" value="{{note.is_pinned}}" >
+        No <input name="is_pinned" type="radio" value="{{note.is_pinned}}" ><br>
+        Select Color: <Br>
+            <select name="color">
+                <option value="{{note.color}}" style="background-color:{{note.color}};">{{note.color}}</option>
+                            <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
+                            <option value="#FFD"  style="background-color:#FFD;"></option>
+
+                            <option value="lightsalmon" style="background-color:lightsalmon;"></option>
+                            <option value="salmon" style="background-color:salmon;"></option>
+                            <option value="darksalmon" style="background-color:darksalmon;"></option>
+                            <option value="lawngreen" style="background-color:lawngreen;"></option>
+                            <option value="lightgreen" style="background-color:lightgreen;"></option>
+                            <option value="lightcyan" style="background-color:lightcyan;">	</option>
+                            <option value="lightskyblue	" style="background-color:lightskyblue;"></option>
+                            <option value="rgb(215, 174, 251)" style="background-color:rgb(215, 174, 251);"></option>
+                            <option value="rgb(174, 203, 250)" style="background-color:rgb(174, 203, 250);"></option>
+                            <option value="rgb(253, 207, 232)" style="background-color:rgb(253, 207, 232);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+                            <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
+            </select><br>
+    <input type="button" value="submit" id ="submit_id" onclick="submitForm()" />
+
+<script>
+            function submitForm(){
+
+
+// Get the first form with the name
+   // Usually the form name is not repeated
+   // but duplicate names are possible in HTML
+   // Therefore to work around the issue, enforce the correct index
+   var frm = document.getElementsByName('ajax_update')[0];
+   frm.submit(); // Submit the form
+   frm.reset();  // Reset all form data
+   return false; // Prevent page refresh
+}
+
+</script>
+    </form>
+
+
+
+</body>
+</html>
