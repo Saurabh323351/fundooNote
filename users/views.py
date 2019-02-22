@@ -173,7 +173,7 @@ def user_login(request):
                 login(request,user)
                 # generate token for user
                 jwt_token = get_jwt_token(user)
-                url = '/'
+                url = 'home/'
                 response = redirect(url)
                 # # Add token in header of url
                 # response={}

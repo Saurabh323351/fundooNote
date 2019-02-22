@@ -1038,7 +1038,7 @@ margin-top: 8px;
 #card_id{
 
    width: 283px;
-    height: 163px;
+    height: auto;
     padding-top: 0px;
     padding-right: 0px;
     padding-left: 0px;
@@ -1051,6 +1051,17 @@ margin-top: 8px;
     /*box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);*/
 
 }
+
+#card_images{
+margin-bottom: -18px;
+    margin-left: -15px;
+    margin-right: 62px;
+    width: 279px;
+    height: 132px;
+    margin-top: -16px;
+}
+
+
 
 #card_id1{
 

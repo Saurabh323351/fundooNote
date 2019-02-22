@@ -51,46 +51,58 @@ def create_note(request):
         if the request is post then we will the data with the form
         and create object of it
         """
-        form = create_note_form(request.POST)
+        form = create_note_form(request.POST or None, request.FILES or None)
 
+        print(form, '===============>form_obj')
+        img = request.FILES
+        data = request.POST
+        print(img, '==========>img')
+        print(data, '==========>data')
         """
         checking whether submitted form data is valid or not 
         """
 
+        # k = form.save()
+
         if form.is_valid():
-            p=request.POST
-            print(p,'------------>p')
-            is_pinned = request.POST.get('is_pinned')
-            # is_pinned_no=request.POST.get('is_pinned_no')
+
+            # p=request.POST
+            # print(p,'------------>p')
+            # is_pinned = request.POST.get('is_pinned')
+            # # is_pinned_no=request.POST.get('is_pinned_no')
             title = request.POST.get('title')
             description = request.POST.get('description')
             color = request.POST.get('color')
-            print(is_pinned, ' --> is_pinned')
-            # print(is_pinned_no, ' --> is_pinned_no')
-            print(title, ' --> title')
-            print(description, ' --> description')
-            print(color, ' --> color')
+            # print(is_pinned, ' --> is_pinned')
+            # # print(is_pinned_no, ' --> is_pinned_no')
+            # print(title, ' --> title')
+            # print(description, ' --> description')
+            # print(color, ' --> color')
+            #
+            image = request.FILES.get('image')
 
-            image=request.POST.get('imageUpload')
-
-            print(image,'============>image')
-
-
+            #
+            print(image, '============>image')
 
             is_exists = Notes.objects.filter(title=title, description=description).exists()
             if is_exists is not True:
-                f = form.save(commit=False)
+                k = form.save()
 
-                print(f, '======>f')
-                f.user = request.user
-                f.is_pinned = is_pinned
-                f.title = title
-                f.description = description
-                f.color = color
-                f.image=image
+                print(k, '=========>k')
 
-                f.save()
-                # print(f.is_pinned, '------>')
+                k.user = request.user
+                k.save()
+
+            #     print(f, '======>f')
+            #     f.user = request.user
+            #     f.is_pinned = is_pinned
+            #     f.title = title
+            #     f.description = description
+            #     f.color = color
+            #     f.image=image
+            #
+            #     f.save()
+            #     # print(f.is_pinned, '------>')
 
         return redirect('show_notes')
     else:
@@ -134,7 +146,7 @@ def show_notes(request):
     for note_obj in all_notes:
 
         list_note_users = note_obj.collaborate.all()
-        print(list_note_users, '==========>list_note_users')
+        # print(list_note_users, '==========>list_note_users')
 
         for users in list_note_users:
 
@@ -147,7 +159,7 @@ def show_notes(request):
         # print(collaborator_notes, '===========>collaborator_notes')
 
         records = (
-                    notes_obj | collaborator_notes).distinct()  # Here i am taking Union of two Queryset to get objects from both the Queryset
+                notes_obj | collaborator_notes).distinct()  # Here i am taking Union of two Queryset to get objects from both the Queryset
 
         # print(records, '==============>records')
 
@@ -535,7 +547,6 @@ from .forms import colaborator_form
 
 
 def note_collaborator(request, note_id):
-
     response = {}
     response['success'] = False
     response['message'] = None
@@ -553,25 +564,22 @@ def note_collaborator(request, note_id):
             note_obj.collaborate.add(user_obj)
             response['message'] = 'Collaborator added successfully'
             response['success'] = True
-            return render(request, 'Notes/colaborator.html', { 'form': form, 'note_id': note_id})
+            return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
             # return redirect('home')
         else:
-            return render(request, 'Notes/colaborator.html', { 'form': form, 'note_id': note_id})
+            return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
     except Notes.DoesNotExist:
         response['message'] = 'Unable to find the note details'
         print("Note Not Found")
-        return render(request, 'Notes/colaborator.html', { 'form': form, 'note_id': note_id})
+        return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
     except User.DoesNotExist:
         response['message'] = 'Unable to find the user details'
         print("User Not Found")
-        return render(request, 'Notes/colaborator.html', { 'form': form, 'note_id': note_id})
+        return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
     except Exception as e:
         response['message'] = 'Something went wrong!'
         print(e)
         return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
-
-
-
 
 
 # -----pagination------------------

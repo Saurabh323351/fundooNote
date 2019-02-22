@@ -398,7 +398,7 @@ width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
 <!--<input type="button" value="submit" name="frmSubmit" style="margin-left: 315px;" />-->
 
 <!--</form>-->
-<form action="{% url 'create_note' %}" method="post" id="ajax_create">
+<form action="{% url 'create_note' %}" method="post" id="ajax_create" enctype="multipart/form-data">
      {% csrf_token %}
     <input name="title" type="text" value="{{note.title}}" placeholder="Title .." id="frmTitle" autocomplete="off"><br>
     <textarea name="description" cols="70" rows="5" value="{{note.description}}" placeholder="Take a note .." id="frmDescription" ></textarea><br>
@@ -408,7 +408,7 @@ width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
                     Yes <input name="is_pinned" type="radio" value=True >
                     No <input name="is_pinned" type="radio" value=False ><br><br>
 
-                         <abbr title="choose Colors"><select name="color" style="width: 55px;">
+                         <select name="color" style="width: 55px;border:none;">
                             <option value="white" style="background-color:white;"></option>
                             <!--<option value="RED" {% if note.color == '' %} selected='white' {% else %} {% endif %}>RED</option>-->
                             <option value="#FFD"  style="background-color:#FFD;"></option>
@@ -427,28 +427,33 @@ width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
                             <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
                             <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
 
-                        </select></abbr>
-                    <abbr title="Remind me" style="border-bottom:0px">
+                        </select>
+
                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="reminder">
                                 <path d="M13 9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>
                                 <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>
-                    </svg></abbr>
+                    </svg>
 
     <span role="button" id="Colab" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
 
-      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
     margin-bottom: -5px;
 ">
                               <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
-    </svg></abbr></span>
+    </svg></span>
 
     <!--</span>-->
     <span>
-       <input type="file" name="imageUpload" id="imageUpload"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="pic">
+       <input id="image_file" type="file" name="image" style="display: inline-block;
+    width: 87px;
+    margin-left: 6px;
+    margin-right: -8px;
+border:none" />
+        <!--<button  id="image_button">Helo</button>-->
 
-<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
-    </svg></span>
-    </span>
+
+
+        </span>
 
 
     <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive1">
@@ -584,11 +589,28 @@ width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
 
     <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id">
   <div class="thumbnail" id="color" style="background-color:{{post.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%); ">
-    <div class="caption">
+    <div class="caption" style="padding: 8px;">
+
+           {% if post.image %}
+
+        <div class="caption card-header">
+
+            {% if post.image %}
+
+<img src="{{post.image.url}}" width="263px" height="130px" id="card_images" style="">
+
+{%endif%}
+
+        </div>
+
+        {%endif%}
+
         <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
+
         {{ post.title }}</a></h2>
         <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
+
             <div class="modal-content" >
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
@@ -958,6 +980,23 @@ var element = document.createElement("input");
         $("#wrapper").toggleClass("active");
 
 });
+
+
+
+
+ <!--$("#image_button").click(function() {-->
+
+        <!--$("#image_file").trigger('change'){-->
+    <!--alert("The text has been changed.");-->
+  <!--});-->
+
+        <!--$("#image_file").change(function(){-->
+    <!--alert("The text has been changed.");-->
+  <!--});-->
+        <!--$("#create_note").trigger('click');-->
+
+<!--});-->
+
 
 });
 
