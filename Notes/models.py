@@ -18,15 +18,14 @@ from django.utils import timezone
 
 # Create your models here.
 from django.urls import reverse
-from datetime import date
+# from datetime import date
 
 
 class Notes(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True, null=True)
-    reminder = models.DateTimeField(default=timezone.now)  # add kiya
-    # date = models.DateField(default=date.today)##add kiya
+    reminder = models.DateTimeField(null=True,default=timezone.now())  # add kiya
 
     is_archived = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)

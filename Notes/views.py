@@ -130,15 +130,12 @@ def show_notes(request):
     # notes_obj = Notes.objects.all().order_by('-created_time')
     user = request.user
 
-    # print(type(user))
-    # user='Saurabh_Singh'
+
     print(user, '=========>user')
     notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False, user=user).order_by(
         '-created_time')
 
-    # notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False, user=user).order_by(
-    #     '-created_time')
-    # print(notes_obj)
+
 
     all_notes = Notes.objects.all()
 
@@ -186,7 +183,7 @@ def show_notes(request):
 
     context = {'notes_obj': records,
                'pin_notes': pin_notes,
-               # 'labels_object':labels_object
+
                'map_label_obj': map_label_obj,
 
                }
@@ -366,6 +363,7 @@ def note_reminder(request, pk):
         print(request.body, 'Hii i am body wala')
         print(request.POST.get('date'), 'Hii i am body wala')
         date = request.POST.get('date')
+
         note = Notes.objects.get(id=pk)
         note.reminder = date
         print(note.reminder, '---->note reminder')

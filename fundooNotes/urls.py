@@ -26,10 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('users.urls')),
     path('login/', core_views.user_login, name='login'),
-    # path('fundoo-home/',views.home,name='home')
-    # path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    # path('api/token/', TokenObtainPairView.as_view()),
-    # path('api/token/refresh/',TokenRefreshView.as_view()),
+
     path('home/', core_views.home, name='home'),
     url(r'^auth/', include('social_django.urls', namespace='social')),
 

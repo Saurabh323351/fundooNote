@@ -227,9 +227,3 @@ def activate(request, uidb64, token):
         # return HttpResponse('Activation link is invalid!')
         return redirect('login')
 
-
-# kk/k
-# jkljuojouo9
-# ""''''''
-# ""
-# """"""
