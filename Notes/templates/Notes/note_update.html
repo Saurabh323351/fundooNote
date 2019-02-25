@@ -1,6 +1,18 @@
 <html>
+<head>
+    <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+	<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+   <!--<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"></script>-->
+   <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>-->
+   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>-->
+</head>
 <body>
-    <h1>Update Note</h1>
+<b>Update Note</b>
     <form action="{% url 'note_update' note.id %}" method="post" name="ajax_update">{% csrf_token %}
         Title<input name="title" type="text" value="{{note.title}}" ><br>
         Description<input name="description" type="text" value="{{note.description}}" ><br>
@@ -27,24 +39,70 @@
                             <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
                             <option value="rgb(230, 201, 168)" style="background-color:rgb(230, 201, 168);"></option>
             </select><br>
-    <input type="button" value="submit" id ="submit_id" onclick="submitForm()" />
+    <input type="submit" value="submit" id ="submit_id" />
 
-<script>
-            function submitForm(){
-
-
-// Get the first form with the name
-   // Usually the form name is not repeated
-   // but duplicate names are possible in HTML
-   // Therefore to work around the issue, enforce the correct index
-   var frm = document.getElementsByName('ajax_update')[0];
-   frm.submit(); // Submit the form
-   frm.reset();  // Reset all form data
-   return false; // Prevent page refresh
-}
-
-</script>
     </form>
+
+
+
+<!--<script>-->
+
+
+
+
+
+<!--$(document).ready(function(){-->
+  <!--$("#submit_id").click(function(){-->
+
+
+
+     <!--var data = $('form').serialize();-->
+     <!--console.log(data)-->
+
+     <!--$.post($(this).attr('action'),data,-->
+    <!--function(data,status){-->
+      <!--console.log("Data: " + data + "\nStatus: " + status);-->
+            <!--&lt;!&ndash;console.log(data)&ndash;&gt;-->
+    <!--});-->
+  <!--});-->
+
+
+
+
+<!--});-->
+
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+<!--$(document).ready(function(){-->
+    <!--$('body').on('click', '#submit_id', function() {-->
+        <!--console.log("helllo");-->
+        <!--var $form = $('#ajax_update');-->
+        <!--console.log("form = ",$form);-->
+        <!--var formdata = $form.serialize();-->
+        <!--console.log("formdata = ",formdata)-->
+        <!--$.post($form.attr('action'), formdata, function(result) {-->
+            <!--console.log("result = ",result);-->
+            <!--if(result.status){-->
+                <!--console.log("result.status = ",result.status);-->
+                <!--alert("Updated")-->
+                <!--location.reload()-->
+                <!--// $('#success_message').-->
+                <!--$('.alert-error').slideUp({ opacity: "hide" }, "slow")-->
+            <!--}else{-->
+                <!--console.log("in else");-->
+                <!--// $('#success_message').slideUp({ opacity: "hide" }, "slow")-->
+                <!--$('.alert-error').slideDown({ opacity: "show" }, "slow");-->
+                <!--$('.message-error').html(result.message);-->
+            <!--}-->
+        <!--}, 'json');-->
+    <!--});-->
+<!--});-->
+
+<!--</script>-->
 
 
 

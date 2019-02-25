@@ -1,7 +1,7 @@
 
 ////for toggle
 //
-    $(document).ready(function(){
+   /* $(document).ready(function(){
  $("#menu-toggle").click(function() {
 //        e.preventDefault();
 //    console.log(e);
@@ -10,7 +10,7 @@
 });
 
 });
-
+*/
 
 
 

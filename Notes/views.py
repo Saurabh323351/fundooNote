@@ -62,7 +62,7 @@ def create_note(request):
         checking whether submitted form data is valid or not 
         """
 
-        # k = form.save()
+
 
         if form.is_valid():
 
@@ -73,6 +73,7 @@ def create_note(request):
             title = request.POST.get('title')
             description = request.POST.get('description')
             color = request.POST.get('color')
+            # is_archived = request.POST.get('color')
             # print(is_pinned, ' --> is_pinned')
             # # print(is_pinned_no, ' --> is_pinned_no')
             # print(title, ' --> title')
@@ -187,7 +188,7 @@ def show_notes(request):
                'map_label_obj': map_label_obj,
 
                }
-    return render(request, 'users/base.html', context=context)
+    return render(request, 'users/dashboard.html', context=context)
 
 
 def note_edit(request, pk):
@@ -224,7 +225,10 @@ class note_update(UpdateView):
         response_data['status'] = False
         if kwargs.get('pk', None):
             try:
-                print(request.POST, 'mai hu')
+                print(request.POST.get('color'), 'mai hu============>')
+                print(request.POST.get('title'), 'mai hu============>')
+                print(request.POST.get('description'), 'mai hu============>')
+                print(request.POST.get('is_pinned'), 'mai hu============>')
                 print(kwargs, 'mai hu kwargs')
                 pk = kwargs.get('pk', None)
                 print('i am pk', pk)
@@ -236,6 +240,7 @@ class note_update(UpdateView):
                 obj.save()
                 response_data['status'] = True
                 response_data['message'] = "Updated Successfully"
+                print("hello bye")
                 return redirect('show_notes')  # i have added to redirect after successful update
             except Exception.DoesNotExist as e:
                 response_data['message'] = "Note doesnt exists"
@@ -335,7 +340,7 @@ def show_trash_notes(request):
 
     notes = Notes.objects.filter(trash=True).order_by('-created_time')
 
-    return render(request, 'users/base.html', {'notes_obj': notes})
+    return render(request, 'users/dashboard.html', {'notes_obj': notes})
 
 
 # class note_reminder(CreateView):
@@ -423,7 +428,7 @@ def show_archive_notes(request):
     notes_obj = Notes.objects.filter(is_archived=True).order_by('-created_time')
     print(notes_obj)
 
-    return render(request, 'users/base.html', {'notes_obj': notes_obj})
+    return render(request, 'users/dashboard.html', {'notes_obj': notes_obj})
 
 
 def pin(request, pk):
@@ -464,12 +469,12 @@ def show_pin_notes(request):
         response['data'] = {
             'notes_obj': pin_notes
         }
-        return render(request, 'users/base.html', context=response)
+        return render(request, 'users/dashboard.html', context=response)
     except Notes.DoesNotExist:
         print('Note doesnt exist')
-        return render(request, 'users/base.html', context=response)
+        return render(request, 'users/dashboard.html', context=response)
     except Exception as e:
-        return render(request, 'users/base.html', context=response)
+        return render(request, 'users/dashboard.html', context=response)
 
 
 from django.db.models import Q
@@ -550,7 +555,7 @@ def note_collaborator(request, note_id):
     response['message'] = None
     response['data'] = None
     try:
-        form = colaborator_form()
+
         if request.method == 'POST':
             form = colaborator_form(request.POST)
             user_id = request.POST.get('collaborate')
@@ -563,8 +568,9 @@ def note_collaborator(request, note_id):
             response['message'] = 'Collaborator added successfully'
             response['success'] = True
             return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
-            # return redirect('home')
+
         else:
+            form = colaborator_form()
             return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
     except Notes.DoesNotExist:
         response['message'] = 'Unable to find the note details'

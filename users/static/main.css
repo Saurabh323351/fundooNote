@@ -1184,3 +1184,23 @@ display:inline;
     height: 18px;
 
 }
+
+.modal-backdrop {
+   background-color: rgb(229, 229, 229);
+}
+
+
+.modal-content{
+background-color:rgb(230, 201, 168);
+
+    width:632px;
+
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-top: 140px;
+
+}

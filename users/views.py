@@ -35,22 +35,11 @@ from .models import Profile
 # main add kiya decorators
 # @login_required()
 def home(request):
-    return render(request, 'users/base.html')
+    return render(request, 'users/dashboard.html')
+
 
 def home1(request):
-    # profile=Profile.objects.all()
-    # if request.method == 'POST':
-    #     if request.is_ajax():
-    #         image = request.FILES.get('Upload Image')
-    #
-    #         new_profile=Profile(image=image)
-    #         new_profile.save()
-    #
-    # # return render_to_response('home.html', {'profile':profile}, )
-
-
     return render(request, 'users/crop_profile_pic.html')
-
 
 
 def register(request):
@@ -100,7 +89,7 @@ def profile(request):
     :param request:take Http request
     :return: redirect to profile page
     """
-    photos=Profile.objects.all()
+    photos = Profile.objects.all()
     # If HTTP Method POST. That means the form was submitted by a user
     if request.method == 'POST':
         # A form bound to the POST data and create instance of form by user request
@@ -121,7 +110,7 @@ def profile(request):
 
     context = {
         'u_form': u_form,
-        'p_form': p_form,'photos':photos
+        'p_form': p_form, 'photos': photos
     }
     return render(request, 'users/profile.html', context)
 
@@ -137,22 +126,20 @@ def get_jwt_token(user):
     jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
     jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 
-
     # create payload for authorised
     payload = jwt_payload_handler(user)
     # print(payload)
-    token=jwt_encode_handler(payload)
+    token = jwt_encode_handler(payload)
 
-    print('hi i am decoder ->',jwt_decode_handler(token))
+    print('hi i am decoder ->', jwt_decode_handler(token))
 
-    decode=jwt_decode_handler(token)
+    decode = jwt_decode_handler(token)
     print(decode['user_id'])
     # return encoded payload
     return token
 
 
 def user_login(request):
-
     print(request.body)
     """
     This method allow authorised user to login
@@ -167,10 +154,10 @@ def user_login(request):
         # check for authentication
         user = authenticate(username=username, password=password)
         # user is valid
-        print('usr', user.id,user.username, user.password,'============>here')
+        print('usr', user.id, user.username, user.password, '============>here')
         if user:
             if user.is_active:
-                login(request,user)
+                login(request, user)
                 # generate token for user
                 jwt_token = get_jwt_token(user)
                 url = 'home/'
@@ -179,14 +166,14 @@ def user_login(request):
                 # response={}
                 response['Token'] = get_jwt_token(user)
                 # from django.http import JsonResponse
-                return response
+                return redirect('home')
                 # r = requests.post(url, data=json.dumps(payload), headers=headers)
                 # response = HttpResponseRedirect('/profile/')
                 # return response
                 # return HttpResponse(jwt_token)
 
             else:
-                return HttpResponse(messages.success(request,"Your account was inactive."))
+                return HttpResponse(messages.success(request, "Your account was inactive."))
         else:
             messages.success(request, f'Invalid username or password')
             # print("Someone tried to login and failed.")
@@ -226,4 +213,3 @@ def activate(request, uidb64, token):
         messages.success(request, f'Activation link is invalid!.')
         # return HttpResponse('Activation link is invalid!')
         return redirect('login')
-

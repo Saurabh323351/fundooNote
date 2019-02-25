@@ -28,7 +28,7 @@ class create_note_form(forms.ModelForm):
         widgets = {
           'description': forms.Textarea(attrs={'rows':1, 'cols':25})
         }
-        fields = ('title', 'description', 'is_pinned', 'color','image')
+        fields = ['title', 'description', 'is_pinned', 'color','image']
 
 class update_note_form(forms.ModelForm):
     id = forms.CharField(widget=forms.HiddenInput())

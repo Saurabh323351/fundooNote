@@ -277,7 +277,7 @@ def note_lable_note(request, pk):
 
 def get_labels(request):
     labels = Labels.objects.all()
-    return render(request, 'users/base.html', {'labels': labels})
+    return render(request, 'users/dashboard.html', {'labels': labels})
 
 from django.http import JsonResponse
 from django.core import serializers
@@ -307,8 +307,8 @@ def get_labels1(request):
     # return HttpResponse({'labels1':labels1})
     # else:
     #     return HttpResponse('hi')
-    # return render(request,'users/base.html',context=context)
-    # return render(request, 'users/base.html', context={'labels1': labels1})
+    # return render(request,'users/dashboard.html',context=context)
+    # return render(request, 'users/dashboard.html', context={'labels1': labels1})
     # return HttpResponse(json.simplejson.dumps(context), mimetype="application/json")
 
 def get_label_notes(request, id):
@@ -318,7 +318,7 @@ def get_label_notes(request, id):
     try:
         L = MapLabels.objects.filter(label_id=label)
     except:
-        return render(request, 'users/base.html', context=[])
+        return render(request, 'users/dashboard.html', context=[])
 
     note_list = []
 
@@ -336,5 +336,5 @@ def get_label_notes(request, id):
     # print(note_obj, '=========> note_obj ===>')
     context = {'notes_obj': note_list,
                }
-    return render(request, 'users/base.html', context=context)
+    return render(request, 'users/dashboard.html', context=context)
 

@@ -27,10 +27,10 @@ class Notes(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, null=True)
     reminder = models.DateTimeField(null=True,default=timezone.now())  # add kiya
 
-    is_archived = models.BooleanField(default=False)
+    is_archived = models.BooleanField(default=False,blank=True)
     is_deleted = models.BooleanField(default=False)
     color = models.CharField(default=None, max_length=50, blank=True, null=True)
-    image = models.ImageField(default=None,upload_to='note_images/' ,null=True)
+    image = models.ImageField(default=None,upload_to='note_images/' ,null=True,blank=True)
     trash = models.BooleanField(default=False)
     is_pinned = models.BooleanField(blank=True, null=True, default=False)
     collaborate = models.ManyToManyField(User, blank=True, related_name='collaborated_user')

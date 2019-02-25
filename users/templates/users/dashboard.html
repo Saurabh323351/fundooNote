@@ -36,6 +36,7 @@
 
     <!--<script>-->
   <!--window.location.href = "login/";-->
+
     <!--</script>-->
 
 
@@ -386,18 +387,6 @@ $("#profilePanel").hide();
 <div class="panel panel-default" id="hide_this" style="width: 606px; margin-left: 277px;margin-top: 91px; margin-top:30px;display: none;">
 <div class="panel-body"  style="
 width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
-<!--<form action="{% url 'create_note' %}" method="post" name="frmPanel">-->
-<!--<input type="text" name="frmText" placeholder="Title .." style="-->
-<!--border-width: 1px;-->
-<!--border-style: inset;-->
-<!--border-color: red;-->
-<!--height: 35px;-->
-<!--font-size: 21px;"/><br><br>-->
-<!--<textarea rows="4" cols="50" placeholder="Take a note ..">-->
-<!--</textarea><br>-->
-<!--<input type="button" value="submit" name="frmSubmit" style="margin-left: 315px;" />-->
-
-<!--</form>-->
 <form action="{% url 'create_note' %}" method="post" id="ajax_create" enctype="multipart/form-data">
      {% csrf_token %}
     <input name="title" type="text" value="{{note.title}}" placeholder="Title .." id="frmTitle" autocomplete="off"><br>
@@ -449,14 +438,13 @@ width: 606px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);" >
     margin-left: 6px;
     margin-right: -8px;
 border:none" />
-        <!--<button  id="image_button">Helo</button>-->
 
 
 
         </span>
 
 
-    <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive1">
+    <span id="archive_span"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="archive1">
                            <path d="M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM6.24 5h11.52l.83 1H5.42l.82-1zM5 19V8h14v11H5zm11-5.5l-4 4-4-4 1.41-1.41L11 13.67V10h2v3.67l1.59-1.59L16 13.5z"/>
     </svg></span>
 
@@ -469,6 +457,23 @@ border:none" />
 
 </div>
 
+<script>
+    $(document).ready(function(){
+
+    $("#archive_span").click(function(){
+
+    <!--value=$("#archive_textbox").val()-->
+    <!--alert(value)-->
+
+
+    val1=$("#archive_textbox").val("True")
+
+    <!--alert(val1)-->
+    });
+
+    });
+
+</script>
 
     {% if pin_notes %}
 <div class="container" id="pin">
@@ -553,7 +558,7 @@ border:none" />
 
           </a>
               </medium>
-        {# <li><i class="fa fa-user"></i></li> #}
+         <li><i class="fa fa-user"></i></li>
       </ul>
     </div>
   </div>
@@ -605,17 +610,20 @@ border:none" />
 
         {%endif%}
 
-        <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal">
+        <h2><a href="{% url 'note_edit' post.pk %}" data-toggle="modal" data-target="#myModal" >
 
         {{ post.title }}</a></h2>
         <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+          <div class="modal-dialog" >
 
-            <div class="modal-content" >
+            <div class="modal-content" style="padding: 30px;" >
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
         </div>
       </div>
+
+
+
     <p>{{ post.description }}</p>
 
             {% for la in map_label_obj %}
@@ -629,13 +637,11 @@ border:none" />
       <ul class="list-inline">
           <medium><a href="{% url 'note_delete' post.pk %}" data-toggle="modal" data-target="#deleteModal">
              <span class="glyphicon glyphicon-trash"></span>
-              <!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="gb_Uc">-->
-              <!--<path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>-->
-              <!--<path d="M9 8h2v9H9zm4 0h2v9h-2z"></path></svg>-->
+
           </a></medium>
               <div id="deleteModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                  <div class="modal-content">
+                  <div class="modal-content" style="padding:10px">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
               </div>
@@ -659,16 +665,32 @@ border:none" />
              <span  class="glyphicon glyphicon-bell"></span>
           </a> </medium>
 
-          <medium>&nbsp<a href="{% url 'note_collaborator' post.pk %}" >
+          <medium>&nbsp<a href="{% url 'note_collaborator' post.pk %}" data-toggle="modal" data-target="#myModal4">
 
-              <span role="button" id="Colab1" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
 
-      <abbr title="Collaborator"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
+              <span role="button"  id="Colab1" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
+
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
     margin-bottom: -5px;
 ">
                               <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
-    </svg></abbr></span>
+    </svg></span>
           </a></medium>
+
+          <!--This below model i make it for collaborator-->
+
+          <div id="myModal4" class="modal fade" role="dialog">
+          <div class="modal-dialog" >
+
+            <div class="modal-content" style="padding: 30px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+        </div>
+      </div>
+
+    <!--This above model i make it for collaborator-->
+
+
           <medium>&nbsp<a href="{%url 'copy_note' post.pk %}" >Copy</a></medium>
 
           <medium>&nbsp <a href="{% url 'pin' post.pk %}">
@@ -677,7 +699,31 @@ border:none" />
 
           </a>
               </medium>
-        {# <li><i class="fa fa-user"></i></li> #}
+
+
+
+
+        <div class="dropdown" >
+<button class="btn btn-default dropdown-toggle" type="button" id="#remainderbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style=" background-color: transparent;box-shadow: none;height: 3px;width: 25px;">
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" height="18" width="25">
+<path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0
+5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>
+</svg>
+</button>
+
+<ul class="dropdown-menu" aria-labelledby="remainderMenu1" style=" margin-left: -17px; margin-top: -22px;">
+<label>Remainder</label>
+<li><a href="{%url 'copy_note' post.pk %}">Copy</a></li>
+<li><a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal" >Add Label</a></li>
+<li><a href="#">Next week</a></li>
+
+</ul>
+</div>
+
+
+
+
+
       </ul>
     </div>
   </div>
@@ -715,7 +761,6 @@ border:none" />
                          <div id="Label_">
 
                             <form action="" id="labelForm" method="post">
-                                <!--<input type="text" id="labelinput" name="l" value="hardcoded" onclick="">-->
                                 <input type="button" id="btn10" value="Edit Done">
                                 <input type="button" id="btn11" value="Delete">
             <input type="text" name="CreateLabel" value="" placeholder="enter label name"  onclick="clic(this)">
@@ -728,8 +773,7 @@ border:none" />
 
 
                 <form method="GET" action="">
-                <!--<input type="button" name="My button" value="Click" onClick="clic(this);">-->
-                <!--<input type="button" name="My button1" value="Click1" onClick="clic(this);">-->
+
                 </form>
 
 <script language="JavaScript">
