@@ -25,7 +25,7 @@ class Notes(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True, null=True)
-    reminder = models.DateTimeField(null=True,default=timezone.now())  # add kiya
+    reminder = models.DateTimeField(null=True,blank=True)  # add kiya
 
     is_archived = models.BooleanField(default=False,blank=True)
     is_deleted = models.BooleanField(default=False)

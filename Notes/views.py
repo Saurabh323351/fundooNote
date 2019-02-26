@@ -240,7 +240,6 @@ class note_update(UpdateView):
                 obj.save()
                 response_data['status'] = True
                 response_data['message'] = "Updated Successfully"
-                print("hello bye")
                 return redirect('show_notes')  # i have added to redirect after successful update
             except Exception.DoesNotExist as e:
                 response_data['message'] = "Note doesnt exists"
@@ -353,7 +352,7 @@ def show_trash_notes(request):
 #     note=Notes.objects.get(id=pk)
 #     return render(request,'Notes/note_reminder.html',{'note':note})
 
-
+from time import gmtime, strftime
 def note_reminder(request, pk):
     """
     This function  is used to set reminder
@@ -366,10 +365,14 @@ def note_reminder(request, pk):
     if request.method == 'POST':
         print(request.POST, 'Hii i am post wala')
         print(request.body, 'Hii i am body wala')
-        print(request.POST.get('date'), 'Hii i am body wala')
-        date = request.POST.get('date')
+        print(request.POST.get('date_and_time'), 'Hii i am body wala')
+        date = request.POST.get('date_and_time')
 
         note = Notes.objects.get(id=pk)
+
+        date=str(date)
+        # strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+
         note.reminder = date
         print(note.reminder, '---->note reminder')
         note.save()
@@ -557,9 +560,13 @@ def note_collaborator(request, note_id):
     try:
 
         if request.method == 'POST':
+
+            print(request.POST,'========>request.POST')
+            # print(data,'========>data')
             form = colaborator_form(request.POST)
             user_id = request.POST.get('collaborate')
 
+            print(user_id,'===========>user_id')
             note_obj = Notes.objects.get(id=note_id)
 
             user_obj = User.objects.get(id=user_id)
@@ -567,7 +574,7 @@ def note_collaborator(request, note_id):
             note_obj.collaborate.add(user_obj)
             response['message'] = 'Collaborator added successfully'
             response['success'] = True
-            return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
+            return JsonResponse(response)
 
         else:
             form = colaborator_form()

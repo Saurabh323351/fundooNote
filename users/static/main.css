@@ -1129,7 +1129,7 @@ margin-top:1px;
 }
 
 #archive2{
-
+margin-left: 13px;
     margin-bottom: -5px;
 
 }
@@ -1202,5 +1202,11 @@ background-color:rgb(230, 201, 168);
     overflow: hidden;
     border-radius: 16px;
     margin-top: 140px;
+
+}
+
+a{
+    color:#0f0f0f;;
+
 
 }

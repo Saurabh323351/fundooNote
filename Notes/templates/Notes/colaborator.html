@@ -1,4 +1,65 @@
-<form action="{% url 'note_collaborator' note_id %}" name="colaborator" method="post">{%csrf_token%}
+<html>
+<body>
+<form action="{% url 'note_collaborator' note_id %}" name="colaborator" method="post" id="colab">{%csrf_token%}
     {{form.as_p}}
     <input type="submit" value="ShareYourNote">
 </form>
+</body>
+</html>
+
+
+<script>
+
+
+
+
+
+$(document).ready(function(){
+  $("#submit_id").click(function(){
+
+
+
+     var data = $('form').serialize();
+     console.log(data)
+
+     $.post($(this).attr('action'),data,
+    function(data,status){
+      console.log("Data: " + data + "\nStatus: " + status);
+            <!--console.log(data)-->
+    });
+  });
+
+
+
+
+});
+
+
+
+</script>
+
+<script type="text/javascript">
+    var frm = $('#colab');
+
+    frm.submit(function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                console.log('Submission was successful.');
+                console.log(data);
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data.message);
+            },
+        });
+    });
+</script>
+
+
+

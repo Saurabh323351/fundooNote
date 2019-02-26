@@ -593,7 +593,7 @@ border:none" />
 
 
     <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 card grid-item" id="card_id">
-  <div class="thumbnail" id="color" style="background-color:{{post.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%); ">
+  <div class="thumbnail" id="color" style="background-color:{{post.color}};padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;box-shadow: 3px 3px 8px hsl(0, 0%, 70%);">
     <div class="caption" style="padding: 8px;">
 
            {% if post.image %}
@@ -653,16 +653,21 @@ border:none" />
           </svg></a>
 
           </medium>
-          <medium>&nbsp<a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>
-              <div id="lableModal" class="modal fade" role="dialog">
+          <!--<medium>&nbsp<a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal">Lable</a></medium>-->
+
+           <!--i used below model for Label--------------------------->
+                <div id="lableModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
               </div>
             </div>
+
+           <!--i used above model for Label--------------------------->
+
           <medium>&nbsp<a href="{% url 'note_reminder' post.pk %}">
-             <span  class="glyphicon glyphicon-bell"></span>
+             <span  class="glyphicon glyphicon-bell" style="margin-left: 14px;"></span>
           </a> </medium>
 
           <medium>&nbsp<a href="{% url 'note_collaborator' post.pk %}" data-toggle="modal" data-target="#myModal4">
@@ -670,9 +675,7 @@ border:none" />
 
               <span role="button"  id="Colab1" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe euCgFf INgbqf-LgbsSe VIpgJd-LgbsSe" aria-label="Collaborator"  tabindex="0">
 
-       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="
-    margin-bottom: -5px;
-">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" id="Collaborator" style="margin-bottom: -5px;margin-left: 19px;">
                               <path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4zm6 5H3v-.99C3.2 16.29 6.3 15 9 15s5.8 1.29 6 2v1zm3-4v-3h-3V9h3V6h2v3h3v2h-3v3h-2z"/>
     </svg></span>
           </a></medium>
@@ -691,10 +694,10 @@ border:none" />
     <!--This above model i make it for collaborator-->
 
 
-          <medium>&nbsp<a href="{%url 'copy_note' post.pk %}" >Copy</a></medium>
+          <!--<medium>&nbsp<a href="{%url 'copy_note' post.pk %}" >Copy</a></medium>-->
 
           <medium>&nbsp <a href="{% url 'pin' post.pk %}">
-              <span  class="glyphicon glyphicon-pushpin"></span>
+              <span  class="glyphicon glyphicon-pushpin" style="margin-left: 19px;"></span>
 
 
           </a>
@@ -704,21 +707,22 @@ border:none" />
 
 
         <div class="dropdown" >
-<button class="btn btn-default dropdown-toggle" type="button" id="#remainderbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style=" background-color: transparent;box-shadow: none;height: 3px;width: 25px;">
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" height="18" width="25">
-<path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0
-5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>
-</svg>
-</button>
+            <button class="btn btn-default dropdown-toggle" type="button" id="#remainderbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style=" background-color: transparent;box-shadow: none;height: 3px;width: 25px;">
+                <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" y="0px" x="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" height="18" width="25" style="margin-top: 29px;margin-left:27px;">
+                <path d="m9 5.5c1 0 1.8-0.8 1.8-1.8s-0.8-1.7-1.8-1.7-1.8 0.8-1.8 1.8 0.8 1.7 1.8 1.7zm0 1.7c-1 0-1.8 0.8-1.8 1.8s0.8 1.8 1.8 1.8 1.8-0.8 1.8-1.8-0.8-1.8-1.8-1.8zm0
+                5.3c-1 0-1.8 0.8-1.8 1.8s0.8 1.7 1.8 1.7 1.8-0.8 1.8-1.8-0.8-1.7-1.8-1.7z"/>
+                </svg>
+            </button>
 
-<ul class="dropdown-menu" aria-labelledby="remainderMenu1" style=" margin-left: -17px; margin-top: -22px;">
-<label>Remainder</label>
-<li><a href="{%url 'copy_note' post.pk %}">Copy</a></li>
-<li><a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal" >Add Label</a></li>
-<li><a href="#">Next week</a></li>
+            <ul class="dropdown-menu" aria-labelledby="remainderMenu1" style=" margin-left: -17px; margin-top: -22px;">
+                <!--<label>Remainder</label>-->
 
-</ul>
-</div>
+                <li><a href="{% url 'note_lable' post.pk %}" data-toggle="modal" data-target="#lableModal" >Add Label</a></li>
+                <li><a href="{%url 'copy_note' post.pk %}">Copy</a></li>
+
+
+            </ul>
+        </div>
 
 
 
@@ -883,35 +887,6 @@ $(document).ready(function(){
 
     </div>
   </div>
-
-   <!--<script>-->
-<!--$(document).ready(function(){-->
-  <!--$("#btn4").click(function(){-->
-    <!--$.post("http://127.0.0.1:8000/get_labels1/",-->
-    <!--{-->
-      <!--name: "SaurabhRajat",-->
-      <!--city: "Duckburg"-->
-    <!--},-->
-    <!--function(data,status){-->
-      <!--alert("Data: " + data + "\nStatus: " + status);-->
-            <!--console.log(data)-->
-    <!--});-->
-  <!--});-->
-<!--});-->
-<!--</script>-->
-
-
-<!--<script>-->
-<!--$(document).ready(function(){-->
-  <!--$("#btn6").click(function(){-->
-    <!--$.getJSON("http://127.0.0.1:8000/get_labels1/", function(result){-->
-      <!--$.each(result, function(i, field){-->
-        <!--$("div").append(field + " ");-->
-      <!--});-->
-    <!--});-->
-  <!--});-->
-<!--});-->
-<!--</script>-->
 
 <script>
 $(document).ready(function(){
