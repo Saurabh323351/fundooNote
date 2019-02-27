@@ -8,35 +8,35 @@
 </html>
 
 
-<script>
+<!--<script>-->
 
 
 
 
 
-$(document).ready(function(){
-  $("#submit_id").click(function(){
+<!--$(document).ready(function(){-->
+  <!--$("#submit_id").click(function(){-->
 
 
 
-     var data = $('form').serialize();
-     console.log(data)
+     <!--var data = $('form').serialize();-->
+     <!--console.log(data)-->
 
-     $.post($(this).attr('action'),data,
-    function(data,status){
-      console.log("Data: " + data + "\nStatus: " + status);
-            <!--console.log(data)-->
-    });
-  });
-
-
-
-
-});
+     <!--$.post($(this).attr('action'),data,-->
+    <!--function(data,status){-->
+      <!--console.log("Data: " + data + "\nStatus: " + status);-->
+            <!--&lt;!&ndash;console.log(data)&ndash;&gt;-->
+    <!--});-->
+  <!--});-->
 
 
 
-</script>
+
+<!--});-->
+
+
+
+<!--</script>-->
 
 <script type="text/javascript">
     var frm = $('#colab');
@@ -48,11 +48,16 @@ $(document).ready(function(){
         $.ajax({
             type: frm.attr('method'),
             url: frm.attr('action'),
+
+            headers: { 'x-my-custom-header': 'some value' },
             data: frm.serialize(),
             success: function (data) {
                 console.log('Submission was successful.');
                 console.log(data);
             },
+
+
+
             error: function (data) {
                 console.log('An error occurred.');
                 console.log(data.message);
@@ -60,6 +65,33 @@ $(document).ready(function(){
         });
     });
 </script>
+
+
+
+
+
+
+
+<!--<script type="text/javascript">-->
+    <!--var frm = $('#colab');-->
+
+    <!--frm.submit(function (e) {-->
+
+        <!--e.preventDefault();-->
+
+        <!--token=localStorage.getItem('token')-->
+        <!--alert(token)-->
+
+         <!--$.post(frm.attr('action'),frm.serialize() + "&token=" + token,-->
+    <!--function(data,status){-->
+      <!--console.log("Data: " + data + "\nStatus: " + status);-->
+            <!--console.log(data)-->
+    <!--});-->
+
+
+
+    <!--});-->
+<!--</script>-->
 
 
 

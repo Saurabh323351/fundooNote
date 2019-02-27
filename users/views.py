@@ -19,7 +19,7 @@ from .forms import UseRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from rest_framework_jwt.settings import api_settings
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
@@ -140,19 +140,31 @@ def get_jwt_token(user):
 
 
 def user_login(request):
-    print(request.body)
+
     """
     This method allow authorised user to login
     :param request: Http request
     :return: response with jwt token
     """
+
+    response = {}
+    response['success'] = False
+    response['message'] = None
+    response['data'] = None
+
     # If HTTP Method POST. That means the form was submitted by a user
     if request.method == 'POST':
+
+
+
         # get username and password from submitted form
         username = request.POST.get('username')
         password = request.POST.get('password')
         # check for authentication
         user = authenticate(username=username, password=password)
+
+        print(user,'----------->user')
+
         # user is valid
         print('usr', user.id, user.username, user.password, '============>here')
         if user:
@@ -160,13 +172,25 @@ def user_login(request):
                 login(request, user)
                 # generate token for user
                 jwt_token = get_jwt_token(user)
-                url = 'home/'
-                response = redirect(url)
+                # url = 'home/'
+
+
+                # response = redirect(url)
+
+                response['success'] = True
+                response['message'] = 'You are successfully Logged In'
+                response['data'] = jwt_token
+
+
+
                 # # Add token in header of url
                 # response={}
-                response['Token'] = get_jwt_token(user)
+                # response['Token'] = get_jwt_token(user)
                 # from django.http import JsonResponse
-                return redirect('home')
+
+                return JsonResponse(response)
+
+
                 # r = requests.post(url, data=json.dumps(payload), headers=headers)
                 # response = HttpResponseRedirect('/profile/')
                 # return response

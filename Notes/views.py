@@ -550,6 +550,7 @@ def search(request):
 
 
 from .forms import colaborator_form
+from rest_framework_jwt.settings import api_settings
 
 
 def note_collaborator(request, note_id):
@@ -564,7 +565,22 @@ def note_collaborator(request, note_id):
             print(request.POST,'========>request.POST')
             # print(data,'========>data')
             form = colaborator_form(request.POST)
+
+            token=request.POST.get('token')
+            print(token,'=========>token')
+
+            jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
+            try:
+                decode=jwt_decode_handler(token)
+                print(decode,'decode============>')
+            except Exception as e:
+                print(e,'exception')
+
             user_id = request.POST.get('collaborate')
+            print(user_id,'===============>user_id')
+
+
+            # user_id = request.POST.get('collaborate')
 
             print(user_id,'===========>user_id')
             note_obj = Notes.objects.get(id=note_id)

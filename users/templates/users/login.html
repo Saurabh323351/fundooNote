@@ -2,8 +2,11 @@
 {% extends "users/base1.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+
+
     <div class="content-section">
-        <form method="post" action="">
+        <form method="post" action="{% url 'login'  %}" id="frmLogin">
             {% csrf_token %}
 
             <fieldset class="form-group">
@@ -43,27 +46,43 @@
 
 
 
-<!--$(document).ready(function(){-->
-  <!--$("#btn").click(function(){-->
+<script type="text/javascript">
+    var frm = $('#frmLogin');
 
- <!--&lt;!&ndash;var id="#"+id&ndash;&gt;-->
-   <!--&lt;!&ndash;var value1=jQuery(id).val();&ndash;&gt;-->
-   <!--&lt;!&ndash;console.log(value1,+"  value1")&ndash;&gt;-->
-<!--var username=$("#username").val()-->
-<!--var password=$("#password").val()-->
-<!--console.log(username)-->
+    <!--alert(frm)-->
 
-    <!--$.post("http://127.0.0.1:8000/login/",-->
-    <!--{-->
-      <!--username: username,-->
-      <!--password: password-->
-    <!--}-->
-    <!--function(data,status){-->
-      <!--console.log("Data: " + data + "\nStatus: " + status);-->
-            <!--console.log(data.Token)-->
-    <!--});-->
-  <!--});-->
-<!--});-->
+    frm.submit(function (e) {
+
+        <!--alert(e+'inside hu')-->
+
+        e.preventDefault();
+
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                console.log('Submission was successful.');
+                console.log(data.data);
+
+
+                console.log(data.message);
+
+                if(data.data != " "){
+                 localStorage.setItem('token',data.data);
+                 window.location.assign("http://127.0.0.1:8000/home/")
+                }
+
+
+            },
+            error: function (data) {
+                console.log('An error occurred.');
+                console.log(data.message);
+            },
+        });
+    });
+</script>
+
 
 
 
