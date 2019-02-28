@@ -12,15 +12,16 @@ Author: Saurabh Singh
 
 Since : 4 Feb , 2019
 """
-
+import jwt
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import login, authenticate
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpRequest
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template.response import TemplateResponse
 # from .forms import SignUpForm, create_note_form, registrationForm, loginForm, update_note_form, reminder_form
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 
 from .forms import create_note_form, reminder_form, update_note_form
@@ -61,8 +62,6 @@ def create_note(request):
         """
         checking whether submitted form data is valid or not 
         """
-
-
 
         if form.is_valid():
 
@@ -131,12 +130,9 @@ def show_notes(request):
     # notes_obj = Notes.objects.all().order_by('-created_time')
     user = request.user
 
-
     print(user, '=========>user')
     notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False, user=user).order_by(
         '-created_time')
-
-
 
     all_notes = Notes.objects.all()
 
@@ -353,6 +349,8 @@ def show_trash_notes(request):
 #     return render(request,'Notes/note_reminder.html',{'note':note})
 
 from time import gmtime, strftime
+
+
 def note_reminder(request, pk):
     """
     This function  is used to set reminder
@@ -370,7 +368,7 @@ def note_reminder(request, pk):
 
         note = Notes.objects.get(id=pk)
 
-        date=str(date)
+        date = str(date)
         # strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
 
         note.reminder = date
@@ -562,34 +560,56 @@ def note_collaborator(request, note_id):
 
         if request.method == 'POST':
 
-            print(request.POST,'========>request.POST')
+            # print(request.POST,'========>request.POST')
+            # print(request.META.get('HTTP_TOKEN'),'========>request.META')
             # print(data,'========>data')
             form = colaborator_form(request.POST)
 
-            token=request.POST.get('token')
-            print(token,'=========>token')
+            if 'token' in cache:
+                token = cache.get('token')
+                print(token, '=======>token=cache.get(token)')
+
+                if token is not request.META.get('HTTP_TOKEN'):
+                    cache.set("token", request.META.get('HTTP_TOKEN'))
+                    token = request.META.get('HTTP_TOKEN')
+                    print(token, '=========>cache.set("token",token,timeout=CACHE_TTL) but IN IF ONLY I AM SETTING')
+
+            else:
+                token = request.META.get('HTTP_TOKEN')
+                cache.set("token", token, timeout=CACHE_TTL)
+
+                print(token, '=========>cache.set("token",token,timeout=CACHE_TTL)')
 
             jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
             try:
-                decode=jwt_decode_handler(token)
-                print(decode,'decode============>')
-            except Exception as e:
-                print(e,'exception')
+                decode = jwt_decode_handler(token)
+                print(decode, 'decode============>')
 
-            user_id = request.POST.get('collaborate')
-            print(user_id,'===============>user_id')
+                user_id = request.POST.get('collaborate')
+                print(user_id, '===============>user_id')
+
+                print(user_id, '===========>user_id')
+                note_obj = Notes.objects.get(id=note_id)
+
+                user_obj = User.objects.get(id=user_id)
+
+                note_obj.collaborate.add(user_obj)
+
+                response['message'] = 'Collaborator added successfully'
+                response['success'] = True
+
+            except jwt.ExpiredSignature:
+                msg = 'Signature has expired'
+                raise AuthenticationFailed(msg)
+            except jwt.DecodeError:
+                msg = 'Error decoding signature.'
+                raise AuthenticationFailed(msg)
+            except jwt.InvalidTokenError:
+                msg = "token is not valid"
+                raise AuthenticationFailed(msg)
 
 
-            # user_id = request.POST.get('collaborate')
 
-            print(user_id,'===========>user_id')
-            note_obj = Notes.objects.get(id=note_id)
-
-            user_obj = User.objects.get(id=user_id)
-
-            note_obj.collaborate.add(user_obj)
-            response['message'] = 'Collaborator added successfully'
-            response['success'] = True
             return JsonResponse(response)
 
         else:
@@ -607,6 +627,44 @@ def note_collaborator(request, note_id):
         response['message'] = 'Something went wrong!'
         print(e)
         return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
+
+
+from rest_framework.response import Response
+
+
+def redis(request):
+    notes = Notes.objects.filter(user=request.user)
+
+    return HttpResponse(notes)
+
+
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.response import Response
+from django.core.cache import cache
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
+
+def redis_cache(request):
+    cache.set("token", "hello", timeout=CACHE_TTL)
+    if 'token' in cache:
+        # get results from cache
+        token_value = cache.get('token')
+
+        print(token_value, 'value is here')
+        return HttpResponse(token_value, status=status.HTTP_201_CREATED)
+
+    else:
+        notes = Notes.objects.all()
+
+        token = "token hu mai"
+        # results = [product.to_json() for product in products]
+        # store data in cache
+        cache.set("token", "token hu mai", timeout=CACHE_TTL)
+        return HttpResponse({"h": "f"}, status=status.HTTP_201_CREATED)
 
 
 # -----pagination------------------

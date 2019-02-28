@@ -45,11 +45,12 @@
 
         e.preventDefault();
 
+token=localStorage.getItem('token')
         $.ajax({
             type: frm.attr('method'),
             url: frm.attr('action'),
 
-            headers: { 'x-my-custom-header': 'some value' },
+            headers: { 'token': token },
             data: frm.serialize(),
             success: function (data) {
                 console.log('Submission was successful.');

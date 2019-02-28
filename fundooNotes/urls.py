@@ -76,7 +76,19 @@ urlpatterns = [
 
     path('search/', views.search,name='search'),
 
-    path('note_collaborator/<int:note_id>/',views.note_collaborator,name='note_collaborator')
+    path('note_collaborator/<int:note_id>/',views.note_collaborator,name='note_collaborator'),
+
+
+
+
+
+    path('redis/',views.redis,name='redis'),
+    path('redis_cache/',views.redis_cache,name='redis_cache')
+
+
+
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

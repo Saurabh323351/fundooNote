@@ -22,7 +22,7 @@ from django.urls import reverse
 
 
 class Notes(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150 ,unique=True)
     description = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True, null=True)
     reminder = models.DateTimeField(null=True,blank=True)  # add kiya
