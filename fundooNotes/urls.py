@@ -82,8 +82,6 @@ urlpatterns = [
 
 
 
-    path('redis/',views.redis,name='redis'),
-    path('redis_cache/',views.redis_cache,name='redis_cache')
 
 
 

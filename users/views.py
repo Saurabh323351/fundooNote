@@ -34,6 +34,7 @@ from .models import Profile
 
 # main add kiya decorators
 # @login_required()
+@login_required(login_url='/login/')#redirect when user is not logged in
 def home(request):
     return render(request, 'users/dashboard.html')
 
@@ -82,7 +83,7 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-@login_required
+@login_required()
 def profile(request):
     """
      This method is to create profile for user

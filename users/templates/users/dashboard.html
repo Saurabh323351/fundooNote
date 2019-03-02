@@ -629,7 +629,7 @@ border:none" />
 
             {% if la.note_id == post %}
 
-    <a href="{% url 'delete_label' la.pk %}"><span class="badge">{{la.label_id}}</span></a>
+    <a href="{% url 'delete_label' la.pk %}" id="label"><span class="badge">{{la.label_id}}</span></a>
             {% endif %}
             {% endfor %}
     <div class="caption card-footer">

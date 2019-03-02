@@ -131,8 +131,7 @@ def show_notes(request):
     user = request.user
 
     print(user, '=========>user')
-    notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False, user=user).order_by(
-        '-created_time')
+    notes_obj = Notes.objects.filter(is_archived=False, is_pinned=False, trash=False, user=user).order_by('-created_time')
 
     all_notes = Notes.objects.all()
 
@@ -152,8 +151,7 @@ def show_notes(request):
         collaborator_notes = Notes.objects.filter(pk__in=note_list)
         # print(collaborator_notes, '===========>collaborator_notes')
 
-        records = (
-                notes_obj | collaborator_notes).distinct()  # Here i am taking Union of two Queryset to get objects from both the Queryset
+        records = (notes_obj | collaborator_notes).distinct()  # Here i am taking Union of two Queryset to get objects from both the Queryset
 
         # print(records, '==============>records')
 
@@ -549,6 +547,12 @@ def search(request):
 
 from .forms import colaborator_form
 from rest_framework_jwt.settings import api_settings
+from django.core.cache import cache
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 
 
 def note_collaborator(request, note_id):
@@ -629,42 +633,6 @@ def note_collaborator(request, note_id):
         return render(request, 'Notes/colaborator.html', {'form': form, 'note_id': note_id})
 
 
-from rest_framework.response import Response
-
-
-def redis(request):
-    notes = Notes.objects.filter(user=request.user)
-
-    return HttpResponse(notes)
-
-
-from rest_framework.decorators import api_view
-from rest_framework import status
-from rest_framework.response import Response
-from django.core.cache import cache
-from django.conf import settings
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
-
-CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
-
-
-def redis_cache(request):
-    cache.set("token", "hello", timeout=CACHE_TTL)
-    if 'token' in cache:
-        # get results from cache
-        token_value = cache.get('token')
-
-        print(token_value, 'value is here')
-        return HttpResponse(token_value, status=status.HTTP_201_CREATED)
-
-    else:
-        notes = Notes.objects.all()
-
-        token = "token hu mai"
-        # results = [product.to_json() for product in products]
-        # store data in cache
-        cache.set("token", "token hu mai", timeout=CACHE_TTL)
-        return HttpResponse({"h": "f"}, status=status.HTTP_201_CREATED)
 
 
 # -----pagination------------------
